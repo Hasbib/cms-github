@@ -217,7 +217,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="navbg-sa room">
+    <div class="navbg-sa">
         <!-- NAVBAR START -->
         <NavbarAdmin />
         <!-- NAVBAR END -->
@@ -226,290 +226,272 @@ onUnmounted(() => {
         <SidebarSA v-if="isSidebarVisible" />
         <!-- SIDEBAR END -->
 
-        <div id="contentsa room" class="dashboard-sa">
-                <div class="container mt-80">
-                    <div class="row">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex justify-content-start">
-                                <div class="search-input w-50 me-md-1">
-                                    <input type="text" class="form-control c-border rounded-3 h-40"
-                                        v-model="searchQuery" placeholder="Search" />
-                                    <i class="bi bi-search"></i>
-                                </div>
-                                <select class="form-select w-25 c-border h-40 ms-2" v-model="selectedSort">
-                                    <option selected>Sort</option>
-                                    <option value="newest">Newest</option>
-                                    <option value="oldest">Oldest</option>
-                                </select>
+        <div id="contentsa" class="dashboard-sa">
+            <div class="container mt-80">
+                <div class="row">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex justify-content-start">
+                            <div class="search-input w-50 me-md-1">
+                                <input type="text" class="form-control c-border rounded-3 h-40" v-model="searchQuery"
+                                    placeholder="Search" />
+                                <i class="bi bi-search"></i>
                             </div>
-                            <ButtonBiru class="fs-16 px-3 rounded-3 h-43" @click="showAddLevelCourseModal">Add Level
-                                Course
-                            </ButtonBiru>
+                            <select class="form-select w-25 c-border h-40 ms-2" v-model="selectedSort">
+                                <option selected>Sort</option>
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                            </select>
                         </div>
+                        <ButtonBiru class="fs-16 px-3 rounded-3 h-43" @click="showAddLevelCourseModal">Add Level Course
+                        </ButtonBiru>
+                    </div>
 
-                        <!-- Add Modal -->
-                        <div v-if="isModalVisible" class="modal-backdrop" @click="closeAddLevelCourseModal"></div>
-                        <div v-if="isModalVisible" class="modal fade show d-block" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true"
-                            @click.self="closeAddLevelCourseModal">
-                            <div class="modal-dialog custom-modal-sosmed modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header mb--3">
-                                        <h5 class="fs-16 fw-medium" id="exampleModalLabel">
-                                            <i class="bi bi-file-earmark-plus me-1"></i>Add Level Course
-                                        </h5>
-                                        <button type="button" class="btn-close fs-12 c-close"
-                                            @click="closeAddLevelCourseModal"></button>
+                    <!-- Add Modal -->
+                    <div v-if="isModalVisible" class="modal-backdrop" @click="closeAddLevelCourseModal"></div>
+                    <div v-if="isModalVisible" class="modal fade show d-block" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeAddLevelCourseModal">
+                        <div class="modal-dialog custom-modal-sosmed modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header mb--3">
+                                    <h5 class="fs-16 fw-medium" id="exampleModalLabel">
+                                        <i class="bi bi-file-earmark-plus me-1"></i>Add Level Course
+                                    </h5>
+                                    <button type="button" class="btn-close fs-12 c-close"
+                                        @click="closeAddLevelCourseModal"></button>
+                                </div>
+                                <hr class="mt-0">
+                                <div class="ps-3 pe-4 mt-3 mb-2">
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="categoryName" class="fs-16 mb-0 mt-2">Nama Level Course</label>
+                                        <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
+                                            placeholder="Nama level Course" v-model="form.name" />
                                     </div>
-                                    <hr class="mt-0">
-                                    <div class="ps-3 pe-4 mt-3 mb-2">
-                                        <div class="d-flex justify-content-between mt-3">
-                                            <label for="categoryName" class="fs-16 mb-0 mt-2">Nama Level Course</label>
-                                            <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
-                                                placeholder="Nama level Course" v-model="form.name" />
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-3">
-                                            <label for="categoryName" class="fs-16 mb-0 mt-2">Point Learning</label>
-                                            <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
-                                                placeholder="Point Learning" v-model="form.point_course_content" />
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-3">
-                                            <label for="categoryName" class="fs-16 mb-0 mt-2">Point Quiz</label>
-                                            <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
-                                                placeholder="Point Quiz" v-model="form.point_quiz" />
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-3">
-                                            <label for="categoryName" class="fs-16 mb-0 mt-2">Point Assignment</label>
-                                            <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
-                                                placeholder="Point Assignment" v-model="form.point_assignment" />
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-3">
-                                            <label for="categoryName" class="fs-16 mb-0 mt-2">Point Completion</label>
-                                            <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
-                                                placeholder="Point Completion" v-model="form.point_course_completion" />
-                                        </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="categoryName" class="fs-16 mb-0 mt-2">Point Learning</label>
+                                        <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
+                                            placeholder="Point Learning" v-model="form.point_course_content" />
                                     </div>
-                                    <div class="d-flex justify-content-center mb-5">
-                                        <ButtonTransparanComponen
-                                            class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
-                                            @click="closeAddLevelCourseModal">Cancel</ButtonTransparanComponen>
-                                        <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
-                                            @click="submitLevelCourseForm">Save</ButtonBiru>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="categoryName" class="fs-16 mb-0 mt-2">Point Quiz</label>
+                                        <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
+                                            placeholder="Point Quiz" v-model="form.point_quiz" />
                                     </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="categoryName" class="fs-16 mb-0 mt-2">Point Assignment</label>
+                                        <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
+                                            placeholder="Point Assignment" v-model="form.point_assignment" />
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="categoryName" class="fs-16 mb-0 mt-2">Point Completion</label>
+                                        <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
+                                            placeholder="Point Completion" v-model="form.point_course_completion" />
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mb-5">
+                                    <ButtonTransparanComponen
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        @click="closeAddLevelCourseModal">Cancel</ButtonTransparanComponen>
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                        @click="submitLevelCourseForm">Save</ButtonBiru>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-4 mt-md-0">
-                            <div class="table-responsive">
-                                <table class="table custom-table rounded-4">
-                                    <thead class="thead-custom">
-                                        <tr class="ps-4">
-                                            <th class="ps-3 fs-16 fw-light w-1">No</th>
-                                            <th class="fs-16 fw-light w-200">Nama Level</th>
-                                            <th class="fs-16 fw-light w-200">Point Learning</th>
-                                            <th class="fs-16 fw-light w-200">Point Quiz</th>
-                                            <th class="fs-16 fw-light w-200">Point Assignment</th>
-                                            <th class="fs-16 fw-light w-200">Point Completion</th>
-                                            <th class="ps-4 fs-16 fw-light w-10">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-custom">
-                                        <tr v-for="(item, index) in paginatedData" :key="item.id">
-                                            <td class="ps-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.point_course_content }}</td>
-                                            <td>{{ item.point_quiz }}</td>
-                                            <td>{{ item.point_assignment }}</td>
-                                            <td>{{ item.point_course_completion }}</td>
-                                            <td class="ps-4">
-                                                <div class="dropdown ps-2">
-                                                    <button class="btn border-0 dropdown-toggle" type="button"
-                                                        data-bs-toggle="dropdown">
-                                                        <p class="bi bi-three-dots-vertical"
-                                                            style="margin-bottom: -8px; margin-top: -5px;"></p>
-                                                    </button>
-                                                    <ul class="dropdown-menu border-0">
-                                                        <h5 class="ms-3 fs-16 fw-normal">Action</h5>
-                                                        <li>
-                                                            <a class="dropdown-item fw-normal fs-16" href="#"
-                                                                @click="showEditLevelCourseModal(item)">
-                                                                <i class="bi bi-pencil-square me-1 fs-16"></i>
-                                                                Edit
+                    </div>
+                    <div class="col-md-12 mt-4 mt-md-0">
+                        <div class="table-responsive">
+                            <table class="table custom-table rounded-4">
+                                <thead class="thead-custom">
+                                    <tr class="ps-4">
+                                        <th class="ps-3 fs-16 fw-light w-1">No</th>
+                                        <th class="fs-16 fw-light w-200">Nama Level</th>
+                                        <th class="fs-16 fw-light w-200">Point Learning</th>
+                                        <th class="fs-16 fw-light w-200">Point Quiz</th>
+                                        <th class="fs-16 fw-light w-200">Point Assignment</th>
+                                        <th class="fs-16 fw-light w-200">Point Completion</th>
+                                        <th class="ps-4 fs-16 fw-light w-10">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-custom">
+                                    <tr v-for="(item, index) in paginatedData" :key="item.id">
+                                        <td class="ps-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.point_course_content }}</td>
+                                        <td>{{ item.point_quiz }}</td>
+                                        <td>{{ item.point_assignment }}</td>
+                                        <td>{{ item.point_course_completion }}</td>
+                                        <td class="ps-4">
+                                            <div class="dropdown ps-2">
+                                                <button class="btn border-0 dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown">
+                                                    <p class="bi bi-three-dots-vertical"
+                                                        style="margin-bottom: -8px; margin-top: -5px;"></p>
+                                                </button>
+                                                <ul class="dropdown-menu border-0">
+                                                    <h5 class="ms-3 fs-16 fw-normal">Action</h5>
+                                                    <li>
+                                                        <a class="dropdown-item fw-normal fs-16" href="#"
+                                                            @click="showEditLevelCourseModal(item)">
+                                                            <i class="bi bi-pencil-square me-1 fs-16"></i>
+                                                            Edit
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item fw-normal" href="#"
+                                                            @click="showDeleteLevelCourseModal(item)">
+                                                            <i class="bi bi-trash me-1 fs-16"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="p-1">
+                                            <nav>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <label for="itemsPerPage" class="me-2">Items per page:</label>
+                                                        <select id="itemsPerPage" class="form-select w-auto"
+                                                            v-model="itemsPerPage">
+                                                            <option value="10">10</option>
+                                                            <option value="20">20</option>
+                                                            <option value="50">50</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} - {{
+                                                        Math.min(currentPage * itemsPerPage, filteredData.length) }} of
+                                                        {{ filteredData.length }} items</span>
+                                                    <ul class="pagination custom-pagination mb-0">
+                                                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                                                            <a class="page-link" href="#"
+                                                                @click.prevent="goToPage(currentPage - 1)">
+                                                                <i class="bi bi-chevron-left"></i>
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a class="dropdown-item fw-normal" href="#"
-                                                                @click="showDeleteLevelCourseModal(item)">
-                                                                <i class="bi bi-trash me-1 fs-16"></i>
-                                                                Delete
+                                                        <li v-for="page in pageNumbers" :key="page" class="page-item"
+                                                            :class="{ active: page === currentPage }">
+                                                            <a class="page-link" href="#"
+                                                                @click.prevent="goToPage(page)" v-if="page !== '...'">{{
+                                                                    page }}</a>
+                                                            <span class="page-link" v-else>...</span>
+                                                        </li>
+                                                        <li class="page-item"
+                                                            :class="{ disabled: currentPage === totalPages }">
+                                                            <a class="page-link" href="#"
+                                                                @click.prevent="goToPage(currentPage + 1)">
+                                                                <i class="bi bi-chevron-right"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="7" class="p-1">
-                                                <nav>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="d-flex align-items-center">
-                                                            <label for="itemsPerPage" class="me-2">Items per
-                                                                page:</label>
-                                                            <select id="itemsPerPage" class="form-select w-auto"
-                                                                v-model="itemsPerPage">
-                                                                <option value="10">10</option>
-                                                                <option value="20">20</option>
-                                                                <option value="50">50</option>
-                                                            </select>
-                                                        </div>
-                                                        <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} -
-                                                            {{
-                                                                Math.min(currentPage * itemsPerPage, filteredData.length) }}
-                                                            of
-                                                            {{ filteredData.length }} items</span>
-                                                        <ul class="pagination custom-pagination mb-0">
-                                                            <li class="page-item"
-                                                                :class="{ disabled: currentPage === 1 }">
-                                                                <a class="page-link" href="#"
-                                                                    @click.prevent="goToPage(currentPage - 1)">
-                                                                    <i class="bi bi-chevron-left"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li v-for="page in pageNumbers" :key="page"
-                                                                class="page-item"
-                                                                :class="{ active: page === currentPage }">
-                                                                <a class="page-link" href="#"
-                                                                    @click.prevent="goToPage(page)"
-                                                                    v-if="page !== '...'">{{
-                                                                        page }}</a>
-                                                                <span class="page-link" v-else>...</span>
-                                                            </li>
-                                                            <li class="page-item"
-                                                                :class="{ disabled: currentPage === totalPages }">
-                                                                <a class="page-link" href="#"
-                                                                    @click.prevent="goToPage(currentPage + 1)">
-                                                                    <i class="bi bi-chevron-right"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </nav>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            </nav>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                                <!-- Edit Modal -->
-                                <div v-if="isEditModalVisible" class="modal-backdrop"
-                                    @click="closeEditLevelCourseModal">
-                                </div>
-                                <div v-if="isEditModalVisible" class="modal fade show d-block" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="false"
-                                    @click.self="closeEditLevelCourseModal">
-                                    <div class="modal-dialog custom-modal modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header mb--3">
-                                                <h5 class="fs-16 fw-medium" id="exampleModalLabel">
-                                                    <i class="bi bi-pencil-square me-1"></i>Edit Level Course
-                                                </h5>
-                                                <button type="button" class="btn-close fs-12 c-close"
-                                                    @click="closeEditLevelCourseModal"></button>
+                            <!-- Edit Modal -->
+                            <div v-if="isEditModalVisible" class="modal-backdrop" @click="closeEditLevelCourseModal">
+                            </div>
+                            <div v-if="isEditModalVisible" class="modal fade show d-block" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="false"
+                                @click.self="closeEditLevelCourseModal">
+                                <div class="modal-dialog custom-modal modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header mb--3">
+                                            <h5 class="fs-16 fw-medium" id="exampleModalLabel">
+                                                <i class="bi bi-pencil-square me-1"></i>Edit Level Course
+                                            </h5>
+                                            <button type="button" class="btn-close fs-12 c-close"
+                                                @click="closeEditLevelCourseModal"></button>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="ps-3 pe-4 mt-3 mb-2">
+                                            <div class="d-flex justify-content-between mt-3">
+                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Nama Level
+                                                    Course</label>
+                                                <input type="text" id="categoryName"
+                                                    class="form-control c-border w-66 h-43"
+                                                    placeholder="Nama level Course" v-model="currentLevelCourse.name"/>
                                             </div>
-                                            <hr class="mt-0">
-                                            <div class="ps-3 pe-4 mt-3 mb-2">
-                                                <div class="d-flex justify-content-between mt-3">
-                                                    <label for="categoryName" class="fs-16 mb-0 mt-2">Nama Level
-                                                        Course</label>
-                                                    <input type="text" id="categoryName"
-                                                        class="form-control c-border w-66 h-43"
-                                                        placeholder="Nama level Course"
-                                                        v-model="currentLevelCourse.name" />
-                                                </div>
-                                                <div class="d-flex justify-content-between mt-3">
-                                                    <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                        Learning</label>
-                                                    <input type="text" id="categoryName"
-                                                        class="form-control c-border w-66 h-43"
-                                                        placeholder="Point Learning"
-                                                        v-model="currentLevelCourse.point_course_content" />
-                                                </div>
-                                                <div class="d-flex justify-content-between mt-3">
-                                                    <label for="categoryName" class="fs-16 mb-0 mt-2">Point Quiz</label>
-                                                    <input type="text" id="categoryName"
-                                                        class="form-control c-border w-66 h-43" placeholder="Point Quiz"
-                                                        v-model="currentLevelCourse.point_quiz" />
-                                                </div>
-                                                <div class="d-flex justify-content-between mt-3">
-                                                    <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                        Assignment</label>
-                                                    <input type="text" id="categoryName"
-                                                        class="form-control c-border w-66 h-43"
-                                                        placeholder="Point Assignment"
-                                                        v-model="currentLevelCourse.point_assignment" />
-                                                </div>
-                                                <div class="d-flex justify-content-between mt-3">
-                                                    <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                        Completion</label>
-                                                    <input type="text" id="categoryName"
-                                                        class="form-control c-border w-66 h-43"
-                                                        placeholder="Point Completion"
-                                                        v-model="currentLevelCourse.point_course_completion" />
-                                                </div>
+                                            <div class="d-flex justify-content-between mt-3">
+                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point Learning</label>
+                                                <input type="text" id="categoryName"
+                                                    class="form-control c-border w-66 h-43"
+                                                    placeholder="Point Learning"  v-model="currentLevelCourse.point_course_content"/>
                                             </div>
-                                            <div class="d-flex justify-content-center mb-5">
-                                                <ButtonTransparanComponen
-                                                    class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
-                                                    @click="closeEditLevelCourseModal">Cancel</ButtonTransparanComponen>
-                                                <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
-                                                    @click="saveUpdateLevelCourse">Save</ButtonBiru>
+                                            <div class="d-flex justify-content-between mt-3">
+                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point Quiz</label>
+                                                <input type="text" id="categoryName"
+                                                    class="form-control c-border w-66 h-43" placeholder="Point Quiz"  v-model="currentLevelCourse.point_quiz"/>
                                             </div>
+                                            <div class="d-flex justify-content-between mt-3">
+                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point
+                                                    Assignment</label>
+                                                <input type="text" id="categoryName"
+                                                    class="form-control c-border w-66 h-43"
+                                                    placeholder="Point Assignment"  v-model="currentLevelCourse.point_assignment"/>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-3">
+                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point
+                                                    Completion</label>
+                                                <input type="text" id="categoryName"
+                                                    class="form-control c-border w-66 h-43"
+                                                    placeholder="Point Completion"  v-model="currentLevelCourse.point_course_completion"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center mb-5">
+                                            <ButtonTransparanComponen
+                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                @click="closeEditLevelCourseModal">Cancel</ButtonTransparanComponen>
+                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                                @click="saveUpdateLevelCourse">Save</ButtonBiru>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- Delete Modal -->
-                                <div v-if="isDeleteModalVisible" class="modal-backdrop"
-                                    @click="closeDeleteLevelCourseModal">
-                                </div>
-                                <div v-if="isDeleteModalVisible" class="modal fade show d-block" role="dialog"
-                                    aria-labelledby="deleteModalLabel" aria-hidden="true"
-                                    @click.self="closeDeleteLevelCourseModal">
-                                    <div class="modal-dialog custom-modal modal-dialog-centered">
-                                        <div class="modal-content pt-3">
-                                            <div
-                                                class="modal-header mb-3 d-flex flex-column justify-content-center align-items-center text-center">
-                                                <PhTrashSimple :size="50" color="#ff4c4c" />
-                                                <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Level Course
-                                                </h5>
-                                                <h5 class="fs-16 fw-light opacity-50">
-                                                    Are you sure you want to delete this Level Course? Once deleted,
-                                                    this
-                                                    data
-                                                    cannot be restored.
-                                                </h5>
-                                            </div>
-                                            <div class="d-flex justify-content-center mb-5">
-                                                <ButtonTransparanComponen
-                                                    class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
-                                                    @click="closeDeleteLevelCourseModal">No, Cancel
-                                                </ButtonTransparanComponen>
-                                                <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
-                                                    @click="deleteCourse">Yes, Delete</ButtonMerah>
-                                            </div>
+                            <!-- Delete Modal -->
+                            <div v-if="isDeleteModalVisible" class="modal-backdrop"
+                                @click="closeDeleteLevelCourseModal">
+                            </div>
+                            <div v-if="isDeleteModalVisible" class="modal fade show d-block" role="dialog"
+                                aria-labelledby="deleteModalLabel" aria-hidden="true"
+                                @click.self="closeDeleteLevelCourseModal">
+                                <div class="modal-dialog custom-modal modal-dialog-centered">
+                                    <div class="modal-content pt-3">
+                                        <div
+                                            class="modal-header mb-3 d-flex flex-column justify-content-center align-items-center text-center">
+                                            <PhTrashSimple :size="50" color="#ff4c4c" />
+                                            <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Level Course</h5>
+                                            <h5 class="fs-16 fw-light opacity-50">
+                                                Are you sure you want to delete this Level Course? Once deleted, this
+                                                data
+                                                cannot be restored.
+                                            </h5>
+                                        </div>
+                                        <div class="d-flex justify-content-center mb-5">
+                                            <ButtonTransparanComponen
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                @click="closeDeleteLevelCourseModal">No, Cancel
+                                            </ButtonTransparanComponen>
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                                @click="deleteCourse">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>
                                 </div>
-                                <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
-                                    <div v-if="isToastVisible"
-                                        class="toast align-items-center text-white bg-light-success border-0 show"
-                                        role="alert">
-                                        <div class="d-flex">
-                                            <div class="toast-body">
-                                                {{ toastMessage }}
-                                            </div>
-                                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                                @click="closeToast" aria-label="Close"></button>
+                            </div>
+                            <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
+                                <div v-if="isToastVisible"
+                                    class="toast align-items-center text-white bg-light-success border-0 show"
+                                    role="alert">
+                                    <div class="d-flex">
+                                        <div class="toast-body">
+                                            {{ toastMessage }}
                                         </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                            @click="closeToast" aria-label="Close"></button>
                                     </div>
                                 </div>
                             </div>
@@ -518,4 +500,5 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
+    </div>
 </template>
