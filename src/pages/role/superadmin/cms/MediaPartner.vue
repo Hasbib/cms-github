@@ -184,7 +184,7 @@ const showEditMediaModal = (media) => {
     form.value.name = media.name;
     form.value.image = null;
     imagePreview.value = media.image
-        ? `${axios.defaults.baseURL.replace('/api', '')}/storage/uploads/${media.image}`
+        ? `${axios.defaults.baseURL.replace('/api', '')}/uploads/media_partner/${media.image}`
         : null;
     isEditModalVisible.value = true;
     document.documentElement.style.overflow = 'hidden';
@@ -317,9 +317,9 @@ onMounted(() => {
                                 </div>
                                 <div class="d-flex justify-content-center mb-5">
                                     <ButtonTransparanComponen
-                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddMediaPartneryModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                         @click="submitForm">Save</ButtonBiru>
                                 </div>
                             </div>
@@ -340,7 +340,7 @@ onMounted(() => {
                                     <tr v-for="(item, index) in paginatedData" :key="item.id">
                                         <td class="ps-4 pt-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                                         <td>
-                                            <img :src="`${axios.defaults.baseURL.replace('/api', '')}/storage/uploads/${item.image}`"
+                                            <img :src="`${axios.defaults.baseURL.replace('/api', '')}/uploads/media_partner/${item.image}`"
                                                 class="rounded-4 image-tabel-sa">
                                         </td>
                                         <td class="pt-4">{{ item.name }}</td>
@@ -489,10 +489,10 @@ onMounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeDeleteMediaPartnerModal">No, Cancel
                                             </ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="deleteMediaPartner">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>

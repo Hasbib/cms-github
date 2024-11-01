@@ -25,7 +25,7 @@ const toggleSidebar = () => {
 // Fungsi Logout menggunakan Vuex
 const Logout = () => {
     store.dispatch('logout').then(() => {
-        router.push('/login');
+        router.push('/');
     }).catch((error) => {
         console.error('Logout failed', error);
     });
@@ -78,7 +78,7 @@ onMounted(() => {
                             <i class="bi bi-chevron-down ms-0 me--8"></i>
                         </button>
 
-                        <ul class="dropdown-menu border-0 mt--1 bg shadow" aria-labelledby="dropdownMenuButton">
+                        <ul class="dropdown-menu w-100 border-0 mt--1 bg shadow" aria-labelledby="dropdownMenuButton">
                             <li>
                                 <button class="dropdown-item fs-14" @click="Logout">
                                     <i class="bi bi-box-arrow-right me-2 fw-light"></i> Logout

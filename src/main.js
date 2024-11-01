@@ -5,7 +5,7 @@ import store from './store';
 
 // Import Bootstrap (CSS dan JS)
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Menggunakan bundle untuk Popper.js
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import PhosphorIcons from "@phosphor-icons/vue";
 import 'animate.css';

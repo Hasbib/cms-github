@@ -194,226 +194,6 @@ nav.scrolled {
 }
 /* ===== NAVBAR END ===== */
 
-/* ===== BANNER START ===== */
-.tf__banner {
-  height: 100vh;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  position: relative;
-}
-.tf__banner .second-banne h1 {
-  --animate-delay: 0.6s;
-}
-.tf__banner .second-banne p {
-  --animate-delay: 1s;
-}
-.tf__banner .second-banne button {
-  --animate-delay: 1.4s;
-}
-
-.scrollable-row {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  cursor: pointer;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.scrollable-row::-webkit-scrollbar {
-  display: none;
-}
-/* ===== BANNER END ===== */
-
-/* ===== INFORMASI START ===== */
-.bg-informasi {
-  position: relative;
-  height: 170px;
-  width: 100%;
-  background-color: #f5f5f5;
-}
-/* ===== INFORMASI END ===== */
-
-/* ===== ABOUT START ===== */
-.bg-about2 {
-  background-color: #f5f5f5;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-}
-.bg-about {
-  position: relative;
-  height: auto;
-  min-height: 45vh;
-  width: 100%;
-  background-color: #f5f5f5;
-}
-.bg-about-isi {
-  position: relative;
-  height: auto;
-  width: 100%;
-  background-color: #f5f5f5;
-}
-.bg-about-page {
-  position: relative;
-  height: auto;
-  width: 100%;
-  background-color: #f5f5f5;
-}
-.breadcrumb a {
-  color: black !important;
-  text-decoration: none !important;
-}
-.breadcrumb-item.active {
-  color: black !important;
-}
-.rectangle-img {
-  width: 100%;
-  max-width: 870px;
-  height: 100%;
-  max-height: 480px;
-  object-fit: cover;
-}
-/* ===== ABOUT END ===== */
-
-/* ===== COURSE START ===== */
-.section {
-  display: none;
-}
-.section.active {
-  display: block;
-}
-.pointer {
-  cursor: pointer;
-  transition: background-color 0.3s, opacity 0.3s, color 0.3s;
-  position: relative;
-}
-.pointer.active {
-  color: green;
-  margin-bottom: 5px;
-}
-.pointer.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 2px;
-  background-color: green;
-}
-.coursespage .pointer.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -19px;
-  width: 100%;
-  height: 2px;
-  background-color: green;
-}
-
-.dc .play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  width: 100px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0.34);
-  border-radius: 50%;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dc .triangle {
-  width: 0;
-  height: 0;
-  border-left: 30px solid #fcd980;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  opacity: 1;
-}
-.dc .dc-height {
-  height: 480px !important;
-  padding-top: 30px !important;
-  width: 100%;
-}
-.dc .modal-content {
-  background: none !important;
-  border: none !important;
-}
-.dc .modal-dialog {
-  max-width: 900px !important;
-  width: 100%;
-  border: none !important;
-}
-.dc .modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7) !important;
-  z-index: 1050 !important;
-}
-.dc .modal-open {
-  overflow: hidden;
-  height: 100vh;
-}
-/* ===== COURSE END ===== */
-
-/* ===== FAQ START ===== */
-.bg-faq {
-  position: relative;
-  height: auto;
-  width: 100%;
-  background-color: #e9e9e9;
-}
-.bg-faq-search {
-  position: relative;
-  height: auto;
-  width: 100%;
-  background-color: #f4f4f4;
-}
-.bg-faq-isi {
-  position: relative;
-  height: auto;
-  width: 97.3%;
-  background-color: #f4f7fe;
-}
-.bg-review-course {
-  position: relative;
-  height: auto;
-  width: 100%;
-  background-color: #f4f7fe;
-}
-.bg-help {
-  position: relative;
-  height: auto;
-  width: 97.3%;
-}
-.bg-faq-form {
-  background-image: url('../images/bg-avatar-form.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-  height: auto;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* ===== FAQ END ===== */
-
-/* ===== FOOTER START ===== */
-.bg-footer {
-  background-color: var(--colorBG);
-}
-.footer-akhir {
-  margin-bottom: -50px;
-}
-/* ===== FOOTER END ===== */
 
 /* ===== PADDING START ===== */
 .r-17 {
@@ -647,72 +427,6 @@ nav.scrolled {
 }
 /* ===== BG COLOR END ===== */
 
-/* ===== PIE CHART START ===== */
-/* .bg-pie .chart-container {
-  position: relative;
-  width: 240px;
-  height: 240px;
-  margin: auto;
-  border-radius: 50%;
-  background-color: #ffffff;
-  border: 1px solid #f4f4f4;
-} */
-
-.bg-pie .text-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: black;
-}
-
-.bg-pie .text-overlay h2 {
-  font-size: 40px;
-  margin: 0;
-}
-
-.bg-pie .text-overlay p {
-  margin: 0;
-  font-size: 18px;
-}
-
-.bg-pie svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.bg-pie .progress-green {
-  fill: none;
-  stroke: #06a73b;
-  stroke-width: 18;
-  stroke-dasharray: 43, 215;
-}
-
-.bg-pie .progress-yellow {
-  fill: none;
-  stroke: #fdc04e;
-  stroke-width: 13;
-  stroke-dasharray: 140, 215;
-}
-
-.bg-pie .progress-white {
-  fill: none;
-  stroke: #f2efff;
-  stroke-width: 9;
-  stroke-dasharray: 215, 215;
-}
-
-.bg-pie .ring {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 14;
-}
-/* ===== PIE CHART END ===== */
 
 /* ===== TEXT FONT SIZE START ===== */
 .fs-8 {
@@ -919,6 +633,21 @@ nav.scrolled {
   color: white !important;
   border: none !important;
 }
+.btn-hijau {
+  background-color: var(--colorHijau);
+  color: white;
+  border: none;
+  padding: 0px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-hijau:hover,
+.btn-hijau:active,
+.btn-hijau:focus {
+  background-color: #048b30 !important;
+  color: white !important;
+  border: none !important;
+}
 .btn-putih {
   background-color: #fff;
   color: var(--colorOrange) !important;
@@ -927,7 +656,6 @@ nav.scrolled {
   text-align: center;
   cursor: pointer;
 }
-
 .btn-putih:hover,
 .btn-putih:active,
 .btn-putih:focus {
@@ -949,48 +677,6 @@ nav.scrolled {
 .btn-merah:focus {
   background-color: #ff2525 !important;
   color: white !important;
-  border: none !important;
-}
-.btn-hijau {
-  background-color: var(--colorHijau);
-  color: white;
-  border: none;
-  padding: 0px 20px;
-  text-align: center;
-  cursor: pointer;
-}
-.btn-hijau:hover,
-.btn-hijau:active,
-.btn-hijau:focus {
-  background-color: #048b30 !important;
-  color: white !important;
-  border: none !important;
-}
-.btn-oren {
-  background-color: var(--colorOren);
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  cursor: pointer;
-}
-.btn-oren:hover,
-.btn-oren:active,
-.btn-oren:focus {
-  background-color: #f6ba21 !important;
-  border: none !important;
-}
-.btn-red {
-  background-color: var(--colorRed);
-  color: white;
-  border: none;
-  padding: 0px 20px;
-  text-align: center;
-  cursor: pointer;
-}
-.btn-red:hover,
-.btn-red:active,
-.btn-red:focus {
-  background-color: #f32719 !important;
   border: none !important;
 }
 
@@ -1200,34 +886,7 @@ nav.scrolled {
 .dashboard input::placeholder {
   font-size: 12px;
 }
-.tooltip {
-  position: absolute !important;
-  bottom: 100% !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  background-color: #1c1e53 !important;
-  color: #fff !important;
-  border-radius: 4px !important;
-  white-space: nowrap !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  transition: opacity 0.2s !important;
-  z-index: 10 !important;
-  margin-left: 20px !important;
-  margin-bottom: 5px !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-}
 
-td:hover .tooltip {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.tooltip::after {
-  margin-left: -25px !important;
-  border-color: #1c1e53 transparent transparent transparent !important;
-}
 
 .progress-text {
   position: absolute;
@@ -1247,28 +906,6 @@ td:hover .tooltip {
   color: #1c1e53;
 }
 
-.room .pointer {
-  cursor: pointer;
-  transition: background-color 0.3s, opacity 0.3s, color 0.3s;
-  position: relative;
-}
-.room .pointer.active {
-  color: var(--colorOrange);
-  margin-bottom: 5px;
-}
-.room .pointer.active::after {
-  display: none;
-}
-.c-iframe {
-  width: 100%;
-  border-radius: 30px;
-  height: 535px;
-  pointer-events: none;
-}
-
-.mycourse .table thead tr:first-child {
-  border-bottom: 1px solid #000;
-}
 
 /* add mycourse active */
 .modal-header {
@@ -1531,145 +1168,9 @@ td:hover .tooltip {
   padding: 15px;
   border-radius: 5px;
 }
-.terms .modal-body {
-  padding: 0 2rem 0rem 2rem !important;
-}
-.terms .modal {
-  display: none;
-}
-.terms .modal.show {
-  display: block;
-}
-.terms .modal-footer {
-  min-height: 75px;
-}
-.terms .tinggi {
-  max-height: 300px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.page-about .fs-16 .platform {
-  display: inline-block;
-  width: 100px;
-}
-
-.page-about .fs-16 ul {
-  padding-left: 28px;
-}
-.essay .tab-content .ul ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-.essay .tab-content .platform {
-  display: inline-block;
-  width: 180px;
-}
-.essay .tab-content .separator {
-  display: inline-block;
-  width: 10px;
-  text-align: center;
-}
 /* ===== ACAK END ===== */
 
-/* ===== ROOM START ===== */
-.image-room {
-  width: 24px;
-  height: 24px;
-}
 
-.quiz .question-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-.quiz .question-wrapper {
-  display: flex;
-  align-items: flex-start;
-}
-.quiz .question-number {
-  margin-right: 10px;
-  font-weight: bold;
-}
-.quiz .question-text {
-  flex: 1;
-  word-wrap: break-word;
-}
-
-.quiz .btn-warning {
-  background-color: #f5f5f5;
-}
-.quiz .btn-warning:hover {
-  background-color: #e0e0e0 !important;
-}
-.quiz .btn-warning:active {
-  background-color: #e0e0e0 !important;
-}
-.quiz .pagination-number {
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  font-size: 16px;
-}
-.quiz .ukuran {
-  height: 40px;
-  width: 40px;
-}
-/* ===== ROOM END ===== */
-
-/* ===== LOGIN PAGE START ===== */
-.body-login {
-  background-image: url('../images/bg-login.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.body-login-nobg {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.left-image {
-  background-image: url('../../assets/images/2.png');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-}
-.left-image-registrasi {
-  background-image: url('../../assets/images/2.png');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-}
-.right-image {
-  background-image: url('../../assets/images/login-bg.png');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-}
-.custom-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.image-reset {
-  width: 324px;
-}
-/* ===== LOGIN PAGE END ===== */
 
 /* ===== SIDEBAR START ===== */
 .side .nav-link:hover {
@@ -1703,10 +1204,11 @@ td:hover .tooltip {
   top: 80px;
   left: 0;
   height: calc(100% - 80px);
-  width: 250px;
+  width: 280px;
   background-color: #fff;
   transition: width 0.3s ease;
   z-index: 100;
+  
 }
 
 #sidebar.collapsed {
@@ -1789,11 +1291,11 @@ td:hover .tooltip {
   scrollbar-color: transparent transparent;
 }
 
-.icon {
+/* .icon {
   font-size: 24px;
   color: rgb(0, 0, 0);
   margin-right: 13px;
-}
+} */
 .toggle {
   font-size: 24px;
   color: rgb(0, 0, 0);
@@ -1813,15 +1315,7 @@ td:hover .tooltip {
 #content.collapsed {
   margin-left: 60px;
 }
-#toggle-btn {
-  cursor: pointer;
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  color: white;
-  background: none;
-  border: none;
-}
+
 #side-menu {
   cursor: pointer;
   position: absolute;
@@ -1918,13 +1412,6 @@ td:hover .tooltip {
 /* ===== SIDEBAR END ===== */
 
 
-/* ===== MYSPROFIL START ===== */
-/* .bs-toast {
-  top: 60px !important;
-  left: 45% !important;
-  z-index: 1050 !important;
-} */
-/* ===== MYPROFIL END ===== */
 
 #colors-example-2 {
   width: 100%;

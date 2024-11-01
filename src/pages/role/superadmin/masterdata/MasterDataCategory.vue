@@ -258,9 +258,9 @@ onMounted(() => {
                                 </div>
                                 <div class="d-flex justify-content-center mb-5">
                                     <ButtonTransparanComponen
-                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddCategoryModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                         @click="submitForm">Save</ButtonBiru>
                                 </div>
                             </div>
@@ -379,9 +379,9 @@ onMounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeEditCategoryModal">Cancel</ButtonTransparanComponen>
-                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="saveCategory">Save</ButtonBiru>
                                         </div>
                                     </div>
@@ -407,9 +407,9 @@ onMounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeDeleteCategoryModal">No, Cancel</ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="deleteCategory">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>

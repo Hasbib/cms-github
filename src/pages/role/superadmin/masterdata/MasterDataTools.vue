@@ -208,9 +208,9 @@ onUnmounted(() => {
                                 </div>
                                 <div class="d-flex justify-content-center mb-5">
                                     <ButtonTransparanComponen
-                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddToolsModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                         @click="submitToolsForm">Save</ButtonBiru>
                                 </div>
                             </div>
@@ -331,21 +331,24 @@ onUnmounted(() => {
                                                 placeholder="Enter tools name" />
                                         </div>
                                         <div class="d-flex align-items-center mt-3">
-                                            <label for="categoryName" class="fs-16 mb-0 me-60">Logo</label>
-                                            <img v-if="imagePreview" :src="imagePreview" alt="Image Preview"
-                                                class="img-fluid mb-2" style="max-height: 200px;">
-                                            <input type="file" id="fileInput" class="hidden" accept="image/*"
-                                                @change="handleFileUploadEdit" />
-                                            <button type="button" class="btn c-border px-4 py-2"
-                                                onclick="document.getElementById('fileInput').click();">
-                                                Upload
-                                            </button>
+                                            <label for="categoryName" class="fs-16 mb-0 me-60 mt--85">Logo</label>
+                                            <div>
+                                                <img v-if="imagePreview" :src="imagePreview" alt="Image Preview"
+                                                    class="img-fluid mb-2 rounded-2"
+                                                    style="max-height: 100px; max-width: 105px; display: block;">
+                                                <input type="file" id="fileInput" class="hidden" accept="image/*"
+                                                    @change="handleFileUploadEdit" />
+                                                <button type="button" class="btn c-border px-4 py-2 mt-2"
+                                                    onclick="document.getElementById('fileInput').click();">
+                                                    Upload
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeEditToolsModal">Cancel</ButtonTransparanComponen>
-                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="saveUpdateSkills">Save</ButtonBiru>
                                         </div>
                                     </div>
@@ -372,9 +375,9 @@ onUnmounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeDeleteToolsModal">No, Cancel</ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="deleteTools">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>

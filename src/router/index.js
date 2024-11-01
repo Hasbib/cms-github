@@ -19,10 +19,9 @@ import MasterDataLevelTeacher from '@/pages/role/superadmin/masterdata/MasterDat
 import MasterDataTools from '@/pages/role/superadmin/masterdata/MasterDataTools.vue';
 
 //Auth Teacher
+import Login from '@/pages/auth/Login.vue';
 import RegistrasiTeacher from '@/pages/auth/Registrasi-teacher.vue';
-import LoginTeacher from '@/pages/auth/Login-teacher.vue';
-
-import LoginAdmin from '@/pages/auth/Login-admin.vue';
+import Verificationemail from '@/pages/auth/Verificationemail.vue';
 
 import Error from '@/pages/404/404.vue';
 
@@ -37,8 +36,10 @@ import MasterData3 from '@/pages/role/superadmin/MasterData3.vue';
 const routes = [
 
     //Auth Superadmin
-  { path: '/', component: LoginAdmin },
-
+  { path: '/', component: Login },
+  { path: '/registrasi-teacher', component: RegistrasiTeacher },
+  { path: '/verification-email', component: Verificationemail },
+  
   //Teacher
   { path: '/dashboard-teacher', component: DashboardTC, meta: { requiresAuth: true, role: 'teacher' } },
 
@@ -56,9 +57,6 @@ const routes = [
   { path: '/master-data/level-course', component: MasterDataLevelCourse },
   { path: '/master-data/level-teacher', component: MasterDataLevelTeacher },
   { path: '/master-data/tools', component: MasterDataTools },
-
-  { path: '/registrasi-teacher', component: RegistrasiTeacher },
-  { path: '/login-teacher', component: LoginTeacher },
 
   { path: '/404', component: Error },
 

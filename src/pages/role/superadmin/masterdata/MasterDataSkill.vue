@@ -281,9 +281,9 @@ onMounted(() => {
                                 </div>
                                 <div class="d-flex justify-content-center mb-5">
                                     <ButtonTransparanComponen
-                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddSkillsModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                         @click="submitSkillForm">Save</ButtonBiru>
                                 </div>
                             </div>
@@ -387,7 +387,7 @@ onMounted(() => {
                                 <div class="modal-dialog custom-modal modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header mb--3">
-                                            <h5 class="fs-16 fw-medium" id="exampleModalLabel">
+                                            <h5 class="fs-16" id="exampleModalLabel">
                                                 <i class="bi bi-pencil-square me-1"></i>Edit Skill
                                             </h5>
                                             <button type="button" class="btn-close fs-12 c-close"
@@ -415,9 +415,9 @@ onMounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeEditCategoryModal">Cancel</ButtonTransparanComponen>
-                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="saveUpdateSkills">Save</ButtonBiru>
                                         </div>
                                     </div>
@@ -443,9 +443,9 @@ onMounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeDeleteSkillsModal">No, Cancel</ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="deleteSkills">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>

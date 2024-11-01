@@ -4,8 +4,10 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import ButtonSuccess from '@/components/ButtonSuccess.vue';
 import Swal from 'sweetalert2';
+import { useStore } from 'vuex'; // Import Vuex store
 
 const router = useRouter();
+const store = useStore();
 
 const otp = ref(['', '', '', '']);
 const email = ref('');
@@ -40,26 +42,24 @@ const onlyNumber = (event) => {
 const handleSubmit = async () => {
   const verification_code = otp.value.join('');
   try {
-    await axios.post('/verify-email', {
+    // Kirim permintaan verifikasi kode registrasi
+    const response = await axios.post('/verify-registration-code', {
       email: email.value,
       verification_code: verification_code,
     });
     
+    // Ambil token dari respons dan simpan ke Vuex untuk login otomatis
+    const token = response.data.token;
+    await store.dispatch('setToken', token); // Menyimpan token ke Vuex
+
     Swal.fire({
       title: "Sukses!",
-      text: "Email verified successfully",
+      text: "Anda telah berhasil login",
       icon: "success",
       confirmButtonColor: '#06A73B',
-      confirmButtonText: 'Login Now',
-      customClass: {
-        confirmButton: 'custom-button',
-      },
-      didOpen: () => {
-        const confirmButton = Swal.getConfirmButton();
-        confirmButton.classList.add('custom-button');
-      },
+      confirmButtonText: 'Go to Dashboard',
     }).then(() => {
-      router.push('/login');
+      router.push('/dashboard-teacher'); // Arahkan ke dashboard teacher
     });
   } catch (error) {
     notification.value = error.response?.data?.message || 'Verification failed, please check your code and try again.';
@@ -78,7 +78,7 @@ const resendVerificationCode = async () => {
 </script>
 
 <template>
-  <div class="body-login-nobg">
+  <div class="body-login-admin">
     <div class="card border-0 rounded-3 custom-shadow2 w-500 mx-3 mx-md-0">
       <div class="p-4 rounded mx-1">
         <h3 class="text-center fs-24 fw-semibold">Enter Verification Code</h3>

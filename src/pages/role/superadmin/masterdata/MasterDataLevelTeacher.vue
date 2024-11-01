@@ -198,8 +198,8 @@ onUnmounted(() => {
                                     </div>
                                     <div class="d-flex justify-content-between mt-3">
                                         <label for="categoryName" class="fs-16 mb-0 mt-2">Description</label>
-                                        <input type="text" id="categoryName" class="form-control c-border w-66 h-43"
-                                            placeholder="Description" />
+                                        <textarea name="" id="" cols="30" class="c-border w-66 h-43 rounded-2"
+                                            rows="3"></textarea>
                                     </div>
                                     <div class="d-flex justify-content-between mt-3">
                                         <label for="categoryName" class="fs-16 mb-0 mt-2">Number of Courses</label>
@@ -247,9 +247,9 @@ onUnmounted(() => {
                                 </div>
                                 <div class="d-flex justify-content-center mb-5">
                                     <ButtonTransparanComponen
-                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddLevelTeachereModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                         @click="submitLevelTeacherForm">Save</ButtonBiru>
                                 </div>
                             </div>
@@ -331,7 +331,7 @@ onUnmounted(() => {
                                                             :class="{ active: page === currentPage }">
                                                             <a class="page-link" href="#"
                                                                 @click.prevent="goToPage(page)" v-if="page !== '...'">{{
-                                                                page }}</a>
+                                                                    page }}</a>
                                                             <span class="page-link" v-else>...</span>
                                                         </li>
                                                         <li class="page-item"
@@ -368,45 +368,62 @@ onUnmounted(() => {
                                         <div class="ps-3 pe-4 mt-3 mb-2">
                                             <div class="d-flex justify-content-between mt-3">
                                                 <label for="categoryName" class="fs-16 mb-0 mt-2">Nama Level
-                                                    Course</label>
+                                                    Teacher</label>
                                                 <input type="text" id="categoryName"
                                                     class="form-control c-border w-66 h-43"
                                                     placeholder="Nama level Course" />
                                             </div>
                                             <div class="d-flex justify-content-between mt-3">
-                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                    Learning</label>
-                                                <input type="text" id="categoryName"
-                                                    class="form-control c-border w-66 h-43"
-                                                    placeholder="Point Learning" />
+                                                <label for="categoryName" class="fs-16 mb-0 mt-2">
+                                                    Description</label>
+                                                <textarea name="" id="" cols="30" class="c-border w-66 h-43 rounded-2"
+                                                    rows="3"></textarea>
                                             </div>
-                                            <div class="d-flex justify-content-between mt-3">
-                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                    Quiz</label>
-                                                <input type="text" id="categoryName"
-                                                    class="form-control c-border w-66 h-43" placeholder="Point Quiz" />
-                                            </div>
-                                            <div class="d-flex justify-content-between mt-3">
-                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                    Assignment</label>
-                                                <input type="text" id="categoryName"
-                                                    class="form-control c-border w-66 h-43"
-                                                    placeholder="Point Assignment" />
-                                            </div>
-                                            <div class="d-flex justify-content-between mt-3">
-                                                <label for="categoryName" class="fs-16 mb-0 mt-2">Point
-                                                    Completion</label>
-                                                <input type="text" id="categoryName"
-                                                    class="form-control c-border w-66 h-43"
-                                                    placeholder="Point Completion" />
+                                            <div class="d-flex justify-content-start align-items-center mt-3">
+                                                <label class="fs-16 mb-0 me-5">Level Course</label>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-1 ms-5">1</span>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="level1" />
+                                                        <label class="form-check-label" for="level1"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-1 ms-2">2</span>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="level1" />
+                                                        <label class="form-check-label" for="level1"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-1 ms-2">3</span>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="level1" />
+                                                        <label class="form-check-label" for="level1"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-1 ms-2">4</span>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="level1" />
+                                                        <label class="form-check-label" for="level1"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-1 ms-2">5</span>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="level1" />
+                                                        <label class="form-check-label" for="level1"></label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeEditLevelTeacherModal">Cancel
                                             </ButtonTransparanComponen>
-                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="saveUpdateLevelTeacher">Save</ButtonBiru>
                                         </div>
                                     </div>
@@ -436,10 +453,10 @@ onUnmounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeDeleteLevelTeacherModal">No, Cancel
                                             </ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="deleteLevelTeacher">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>

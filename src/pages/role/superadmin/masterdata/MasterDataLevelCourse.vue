@@ -289,9 +289,9 @@ onUnmounted(() => {
                                 </div>
                                 <div class="d-flex justify-content-center mb-5">
                                     <ButtonTransparanComponen
-                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                        class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddLevelCourseModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                         @click="submitLevelCourseForm">Save</ButtonBiru>
                                 </div>
                             </div>
@@ -315,10 +315,10 @@ onUnmounted(() => {
                                     <tr v-for="(item, index) in paginatedData" :key="item.id">
                                         <td class="ps-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                                         <td>{{ item.name }}</td>
-                                        <td>{{ item.point_course_content }}</td>
-                                        <td>{{ item.point_quiz }}</td>
-                                        <td>{{ item.point_assignment }}</td>
-                                        <td>{{ item.point_course_completion }}</td>
+                                        <td>{{ item.point_course_content }} point</td>
+                                        <td>{{ item.point_quiz }} point/Question</td>
+                                        <td>{{ item.point_assignment }} point</td>
+                                        <td>{{ item.point_course_completion }} point</td>
                                         <td class="ps-4">
                                             <div class="dropdown ps-2">
                                                 <button class="btn border-0 dropdown-toggle" type="button"
@@ -352,7 +352,7 @@ onUnmounted(() => {
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="d-flex align-items-center">
                                                         <label for="itemsPerPage" class="me-2">Items per page:</label>
-                                                        <select id="itemsPerPage" class="form-select w-auto"
+                                                        <select id="itemsPerPage" class="form-select w-auto bg-none"
                                                             v-model="itemsPerPage">
                                                             <option value="10">10</option>
                                                             <option value="20">20</option>
@@ -443,9 +443,9 @@ onUnmounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeEditLevelCourseModal">Cancel</ButtonTransparanComponen>
-                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="saveUpdateLevelCourse">Save</ButtonBiru>
                                         </div>
                                     </div>
@@ -473,10 +473,10 @@ onUnmounted(() => {
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
                                             <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
+                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                                 @click="closeDeleteLevelCourseModal">No, Cancel
                                             </ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
+                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16"
                                                 @click="deleteCourse">Yes, Delete</ButtonMerah>
                                         </div>
                                     </div>

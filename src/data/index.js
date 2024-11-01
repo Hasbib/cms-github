@@ -1072,3 +1072,14 @@ export const categoryName = [
     skill: 'Game Design'
   }
 ];
+
+
+export const CourseManajemen = [
+  {
+    id: 1,
+    image: Image2,
+    title: "Dasar Pemograman Web",
+    sub_title: "Materi pembelajaran mengenai pembuatan website ...",
+    teacher: "Dika Prabowo",
+  }
+]

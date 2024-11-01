@@ -63,52 +63,72 @@
   background-color: #ffffff;
   transition: width 0.3s ease;
   z-index: 100;
-  overflow-y: auto;
-  scrollbar-color: transparent transparent;
   border-right: 1px solid #bbbbbb;
+  overflow-y: scroll;
 }
+#sidebarsa::-webkit-scrollbar {
+  display: none; 
+}
+#sidebarsa {
+  scrollbar-width: none;
+}
+
 #sidebarsa.collapsed {
   width: 70px;
 }
+
 #sidebarsa.collapsed a span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 #sidebarsa ul {
   padding: 0;
   list-style-type: none;
   margin-top: 20px;
 }
+
 #sidebarsa ul li a {
   color: white;
   text-decoration: none;
 }
+
 #sidebarsa ul li a.active {
   color: black;
 }
+
 #sidebarsa ul li a span {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 #sidebarsa.collapsed ul li a span {
   opacity: 0;
   transform: translateX(-20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 #sidebarsa ul li a .icon {
   transition: transform 0.3s ease;
 }
+
 #sidebarsa.collapsed ul li a .icon {
   transform: scale(1.2);
 }
+
 .sd .menu-text-sa {
   font-size: 25px;
   font-weight: 300;
   top: 13px;
   left: 18px;
   position: absolute;
+}
+.icon {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  margin-right: 13px;
 }
 .side.collapsed .menu-text-sa,
 .side.collapsed .menu-text-sa {
@@ -129,7 +149,11 @@
 .sidebar-sa .active-sidebar {
   color: #0d92f4 !important;
   font-weight: 500;
-  background-color: #e7f4fecc;
+  background-color: #e7f4fe;
+}
+.sidebar-sa .active-sidebar2 {
+  color: #0d92f4 !important;
+  font-weight: 500;
 }
 .sd .menu-logo-sa {
   font-size: 25px;
@@ -142,7 +166,15 @@
 .side.collapsed .menu-text {
   display: none;
 }
-
+#toggle-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: white;
+  background: none;
+  border: none;
+}
 .r-13 {
   right: 13%;
 }
@@ -333,3 +365,25 @@
   background: none;
 }
 /* ==== TABEL SA START ==== */
+
+.bordersa {
+  border: 1px solid #bbbbbb;
+}
+
+.terms .modal-body {
+  padding: 0 2rem 0rem 2rem !important;
+}
+.terms .modal {
+  display: none;
+}
+.terms .modal.show {
+  display: block;
+}
+.terms .modal-footer {
+  min-height: 75px;
+}
+.terms .tinggi {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
