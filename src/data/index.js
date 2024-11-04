@@ -201,7 +201,7 @@ export const skillPage = [
     id: 2,
     image: Skill2,
     judul: 'Find Your Dream Course',
-    deskripsi: "With a few clicks, explore hundreds of courses designed specifically for different needs. Use keywords or filters to find the course that best suits the skills you want to develop.",
+    deskripsi: 'With a few clicks, explore hundreds of courses designed specifically for different needs. Use keywords or filters to find the course that best suits the skills you want to develop.',
   },
   {
     id: 3,
@@ -818,268 +818,367 @@ export const category = [
   },
 ];
 
-
 //SUPERADMIN
 export const categoryName = [
   {
     id: 1,
     name: 'Web Development',
-    skill: 'React'
+    skill: 'React',
   },
   {
     id: 2,
     name: 'Game Development',
-    skill: 'Laravel'
+    skill: 'Laravel',
   },
   {
     id: 3,
     name: 'Game Development',
-    skill: 'Vue js'
+    skill: 'Vue js',
   },
   {
     id: 4,
     name: 'Game Development',
-    skill: 'Angular'
+    skill: 'Angular',
   },
   {
     id: 5,
     name: 'Game Development',
-    skill: 'DevOps'
+    skill: 'DevOps',
   },
   {
     id: 6,
     name: 'Computer Networking',
-    skill: 'Routing'
+    skill: 'Routing',
   },
   {
     id: 7,
     name: 'Cloud Computing',
-    skill: 'Kubernetes'
+    skill: 'Kubernetes',
   },
   {
     id: 8,
     name: 'Web Development',
-    skill: 'Django'
+    skill: 'Django',
   },
   {
     id: 9,
     name: 'Augmented Reality (AR) dan Virtual Reality (VR)',
-    skill: 'Blender'
+    skill: 'Blender',
   },
   {
     id: 10,
     name: 'Artificial Intelligence',
-    skill: 'TensorFlow'
+    skill: 'TensorFlow',
   },
   {
     id: 11,
     name: 'Mobile Development',
-    skill: 'Flutter'
+    skill: 'Flutter',
   },
   {
     id: 12,
     name: 'Data Science',
-    skill: 'Python'
+    skill: 'Python',
   },
   {
     id: 13,
     name: 'Cybersecurity',
-    skill: 'Ethical Hacking'
+    skill: 'Ethical Hacking',
   },
   {
     id: 14,
     name: 'Web Development',
-    skill: 'HTML & CSS'
+    skill: 'HTML & CSS',
   },
   {
     id: 15,
     name: 'Mobile Development',
-    skill: 'Kotlin'
+    skill: 'Kotlin',
   },
   {
     id: 16,
     name: 'Game Development',
-    skill: 'Unity'
+    skill: 'Unity',
   },
   {
     id: 17,
     name: 'Data Analysis',
-    skill: 'Power BI'
+    skill: 'Power BI',
   },
   {
     id: 18,
     name: 'Artificial Intelligence',
-    skill: 'PyTorch'
+    skill: 'PyTorch',
   },
   {
     id: 19,
     name: 'DevOps',
-    skill: 'Docker'
+    skill: 'Docker',
   },
   {
     id: 20,
     name: 'Cloud Computing',
-    skill: 'AWS'
+    skill: 'AWS',
   },
   {
     id: 21,
     name: 'Blockchain',
-    skill: 'Ethereum'
+    skill: 'Ethereum',
   },
   {
     id: 22,
     name: 'Internet of Things (IoT)',
-    skill: 'Arduino'
+    skill: 'Arduino',
   },
   {
     id: 23,
     name: 'Computer Networking',
-    skill: 'Cisco'
+    skill: 'Cisco',
   },
   {
     id: 24,
     name: 'Web Development',
-    skill: 'Node.js'
+    skill: 'Node.js',
   },
   {
     id: 25,
     name: 'Game Development',
-    skill: 'C++'
+    skill: 'C++',
   },
   {
     id: 26,
     name: 'Cybersecurity',
-    skill: 'Penetration Testing'
+    skill: 'Penetration Testing',
   },
   {
     id: 27,
     name: 'Artificial Intelligence',
-    skill: 'Natural Language Processing'
+    skill: 'Natural Language Processing',
   },
   {
     id: 28,
     name: 'Data Science',
-    skill: 'R'
+    skill: 'R',
   },
   {
     id: 29,
     name: 'Mobile Development',
-    skill: 'Swift'
+    skill: 'Swift',
   },
   {
     id: 30,
     name: 'Web Development',
-    skill: 'PHP'
+    skill: 'PHP',
   },
   {
     id: 31,
     name: 'Augmented Reality (AR) dan Virtual Reality (VR)',
-    skill: 'Unity3D'
+    skill: 'Unity3D',
   },
   {
     id: 32,
     name: 'Cloud Computing',
-    skill: 'Azure'
+    skill: 'Azure',
   },
   {
     id: 33,
     name: 'DevOps',
-    skill: 'CI/CD'
+    skill: 'CI/CD',
   },
   {
     id: 34,
     name: 'Data Science',
-    skill: 'SQL'
+    skill: 'SQL',
   },
   {
     id: 35,
     name: 'Mobile Development',
-    skill: 'Java'
+    skill: 'Java',
   },
   {
     id: 36,
     name: 'Computer Networking',
-    skill: 'Network Security'
+    skill: 'Network Security',
   },
   {
     id: 37,
     name: 'Cybersecurity',
-    skill: 'Malware Analysis'
+    skill: 'Malware Analysis',
   },
   {
     id: 38,
     name: 'Web Development',
-    skill: 'JavaScript'
+    skill: 'JavaScript',
   },
   {
     id: 39,
     name: 'Game Development',
-    skill: 'Unreal Engine'
+    skill: 'Unreal Engine',
   },
   {
     id: 40,
     name: 'Internet of Things (IoT)',
-    skill: 'Raspberry Pi'
+    skill: 'Raspberry Pi',
   },
   {
     id: 41,
     name: 'Artificial Intelligence',
-    skill: 'Machine Learning'
+    skill: 'Machine Learning',
   },
   {
     id: 42,
     name: 'Data Analysis',
-    skill: 'Excel'
+    skill: 'Excel',
   },
   {
     id: 43,
     name: 'Cloud Computing',
-    skill: 'Google Cloud'
+    skill: 'Google Cloud',
   },
   {
     id: 44,
     name: 'Cybersecurity',
-    skill: 'Threat Detection'
+    skill: 'Threat Detection',
   },
   {
     id: 45,
     name: 'Web Development',
-    skill: 'WordPress'
+    skill: 'WordPress',
   },
   {
     id: 46,
     name: 'Blockchain',
-    skill: 'Smart Contracts'
+    skill: 'Smart Contracts',
   },
   {
     id: 47,
     name: 'Augmented Reality (AR) dan Virtual Reality (VR)',
-    skill: 'Maya'
+    skill: 'Maya',
   },
   {
     id: 48,
     name: 'Artificial Intelligence',
-    skill: 'Deep Learning'
+    skill: 'Deep Learning',
   },
   {
     id: 49,
     name: 'Mobile Development',
-    skill: 'React Native'
+    skill: 'React Native',
   },
   {
     id: 50,
     name: 'Game Development',
-    skill: 'Game Design'
-  }
+    skill: 'Game Design',
+  },
 ];
-
 
 export const CourseManajemen = [
   {
     id: 1,
     image: Image2,
-    title: "Dasar Pemograman Web",
-    sub_title: "Materi pembelajaran mengenai pembuatan website ...",
-    teacher: "Dika Prabowo",
-  }
-]
+    title: 'Dasar Pemograman Web',
+    sub_title: 'Materi pembelajaran mengenai pembuatan website pemograman web',
+    teacher: 'Dika Prabowo',
+  },
+];
+
+export const SkillData = [
+  {
+    id: 1,
+    category: 'Web',
+    skill: 'Web',
+  },
+];
+
+export const dataStudent = [
+  { 
+    id: 1, 
+    name: 'Yanto', 
+    date: '01/10/2024', 
+    progress: '70%' 
+  },
+  { 
+    id: 2, 
+    name: 'Siti', 
+    date: '02/10/2024', 
+    progress: '80%' 
+  },
+  { 
+    id: 3, 
+    name: 'Andi', 
+    date: '03/10/2024', 
+    progress: '60%' 
+  },
+  { 
+    id: 4, 
+    name: 'Rina', 
+    date: '04/10/2024', 
+    progress: '75%' 
+  },
+  { 
+    id: 5, 
+    name: 'Budi', 
+    date: '05/10/2024', 
+    progress: '85%' 
+  },
+  { 
+    id: 6, 
+    name: 'Dewi', 
+    date: '06/10/2024', 
+    progress: '90%' 
+  },
+  { 
+    id: 7, 
+    name: 'Rudi', 
+    date: '07/10/2024', 
+    progress: '65%' 
+  },
+  { 
+    id: 8, 
+    name: 'Lina', 
+    date: '08/10/2024', 
+    progress: '55%' 
+  },
+  { 
+    id: 9, 
+    name: 'Eko', 
+    date: '09/10/2024', 
+    progress: '50%' 
+  },
+  { 
+    id: 10, 
+    name: 'Tina', 
+    date: '10/10/2024', 
+    progress: '95%' 
+  },
+  { 
+    id: 11, 
+    name: 'Fauzi', 
+    date: '11/10/2024', 
+    progress: '72%' 
+  },
+  { 
+    id: 12, 
+    name: 'Sari', 
+    date: '12/10/2024', 
+    progress: '78%' 
+  },
+  { 
+    id: 13, 
+    name: 'Oka', 
+    date: '13/10/2024', 
+    progress: '62%' 
+  },
+  { 
+    id: 14, 
+    name: 'Joko', 
+    date: '14/10/2024', 
+    progress: '88%' 
+  },
+  { 
+    id: 15, 
+    name: 'Vina', 
+    date: '15/10/2024', 
+    progress: '82%' 
+  },
+];

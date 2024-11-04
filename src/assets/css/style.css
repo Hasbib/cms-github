@@ -194,7 +194,6 @@ nav.scrolled {
 }
 /* ===== NAVBAR END ===== */
 
-
 /* ===== PADDING START ===== */
 .r-17 {
   right: 17%;
@@ -210,6 +209,9 @@ nav.scrolled {
 }
 .p-30 {
   padding: 30px;
+}
+.pt-18 {
+  padding-top: 18px !important;
 }
 .pt-55 {
   padding-top: 55px;
@@ -243,6 +245,15 @@ nav.scrolled {
 .me-60 {
   margin-right: 60px;
 }
+.me-150 {
+  margin-right: 150.5px;
+}
+.mt-6 {
+  margin-top: 6.8px;
+}
+.mt-11 {
+  margin-top: 11px;
+}
 .mt-12 {
   margin-top: 12px;
 }
@@ -272,6 +283,9 @@ nav.scrolled {
 }
 .mt--3 {
   margin-top: -3px !important;
+}
+.mt--10 {
+  margin-top: -10px !important;
 }
 .mt--18 {
   margin-top: -18px;
@@ -323,6 +337,9 @@ nav.scrolled {
 }
 .ms--15 {
   margin-left: -15px;
+}
+.ms--35 {
+  margin-left: -35px;
 }
 .ms-18 {
   margin-left: 18px;
@@ -414,7 +431,7 @@ nav.scrolled {
   color: #999;
 }
 .text-merah {
-  color: #FF4C4C;
+  color: #ff4c4c;
 }
 /* ===== COLOR END ===== */
 
@@ -426,7 +443,6 @@ nav.scrolled {
   background-color: #fdfdfd;
 }
 /* ===== BG COLOR END ===== */
-
 
 /* ===== TEXT FONT SIZE START ===== */
 .fs-8 {
@@ -495,6 +511,9 @@ nav.scrolled {
 .w-11 {
   width: 11%;
 }
+.w-13 {
+  width: 12%;
+}
 .w-15 {
   width: 15%;
 }
@@ -515,6 +534,9 @@ nav.scrolled {
 }
 .w-66 {
   width: 66%;
+}
+.w-78 {
+  width: 78%;
 }
 .w-87 {
   width: 87.8%;
@@ -612,6 +634,9 @@ nav.scrolled {
 .h-50 {
   height: 50px !important;
 }
+.min-height-68 {
+  min-height: 68vh;
+}
 .h-200 {
   height: 200px;
 }
@@ -665,7 +690,7 @@ nav.scrolled {
 }
 
 .btn-merah {
-  background-color: #FF4C4C;
+  background-color: #ff4c4c;
   color: white;
   border: none;
   padding: 0px 20px;
@@ -678,6 +703,15 @@ nav.scrolled {
   background-color: #ff2525 !important;
   color: white !important;
   border: none !important;
+}
+
+.btn-tag {
+  background-color: #f4f7fe;
+  color: #303030;
+  border: none;
+  padding: 0px 20px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .pagination {
@@ -757,6 +791,13 @@ nav.scrolled {
 .search-input .bi-search {
   position: absolute;
   top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+.studentsa .search-input .bi-search {
+  position: absolute;
+  top: 55%;
   left: 0.75rem;
   transform: translateY(-50%);
   color: #6c757d;
@@ -887,7 +928,6 @@ nav.scrolled {
   font-size: 12px;
 }
 
-
 .progress-text {
   position: absolute;
   top: 3px;
@@ -905,7 +945,6 @@ nav.scrolled {
   font-weight: bold;
   color: #1c1e53;
 }
-
 
 /* add mycourse active */
 .modal-header {
@@ -1077,7 +1116,9 @@ nav.scrolled {
 }
 
 .file-upload {
-  border: 1px solid #ddd;
+  border-color: #bbbbbb;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 10px;
   padding: 40px;
   text-align: center;
@@ -1170,8 +1211,6 @@ nav.scrolled {
 }
 /* ===== ACAK END ===== */
 
-
-
 /* ===== SIDEBAR START ===== */
 .side .nav-link:hover {
   color: var(--colorBlueSide) !important;
@@ -1208,7 +1247,6 @@ nav.scrolled {
   background-color: #fff;
   transition: width 0.3s ease;
   z-index: 100;
-  
 }
 
 #sidebar.collapsed {
@@ -1410,8 +1448,6 @@ nav.scrolled {
   display: none;
 }
 /* ===== SIDEBAR END ===== */
-
-
 
 #colors-example-2 {
   width: 100%;

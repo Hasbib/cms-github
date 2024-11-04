@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted,onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import NavbarAdmin from '@/layout/NavbarSA.vue';
 import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonBiru from '@/components/ButtonBiru.vue';
@@ -9,20 +9,6 @@ import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 const isSidebarVisible = ref(true);
-
-const checkWindowSize = () => {
-    isSidebarVisible.value = window.innerWidth >= 770;
-};
-
-onMounted(() => {
-    checkWindowSize();
-    window.addEventListener('resize', checkWindowSize);
-});
-
-onUnmounted(() => {
-    window.removeEventListener('resize', checkWindowSize);
-})
-
 const categoryData = ref([]);
 const router = useRouter();
 const searchQuery = ref('');
@@ -37,10 +23,31 @@ const selectedSort = ref('Sort');
 const currentPage = ref(1);
 const itemsPerPage = 10;
 const totalPages = computed(() => Math.ceil(filteredData.value.length / itemsPerPage));
+const dropdownVisible = ref(false);
+const dropdownPosition = ref({ top: '0px', left: '0px' });
 
 const form = ref({
     name: '',
 });
+
+const showDropdownMenu = (event) => {
+    const buttonRect = event.target.getBoundingClientRect();
+    dropdownPosition.value = {
+        top: `${buttonRect.bottom}px`,
+        left: `${buttonRect.left - 130}px`
+    };
+    dropdownVisible.value = true;
+};
+
+const hideDropdownMenu = () => {
+    dropdownVisible.value = false;
+};
+
+const handleClickOutside = (event) => {
+    if (!event.target.closest('.dropdown-container')) {
+        hideDropdownMenu();
+    }
+};
 
 const filteredData = computed(() => {
     let sortedData = [...categoryData.value];
@@ -203,6 +210,22 @@ const closeModal = () => {
 onMounted(() => {
     fetchCategoryData();
 });
+
+const checkWindowSize = () => {
+    isSidebarVisible.value = window.innerWidth >= 770;
+};
+
+onMounted(() => {
+    checkWindowSize();
+    window.addEventListener('resize', checkWindowSize);
+    document.addEventListener('click', handleClickOutside);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', checkWindowSize);
+    document.removeEventListener('click', handleClickOutside);
+})
+
 </script>
 
 <template>
@@ -260,8 +283,8 @@ onMounted(() => {
                                     <ButtonTransparanComponen
                                         class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
                                         @click="closeAddCategoryModal">Cancel</ButtonTransparanComponen>
-                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16"
-                                        @click="submitForm">Save</ButtonBiru>
+                                    <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16" @click="submitForm">
+                                        Save</ButtonBiru>
                                 </div>
                             </div>
                         </div>
@@ -281,13 +304,15 @@ onMounted(() => {
                                         <td class="ps-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                                         <td>{{ item.name }}</td>
                                         <td class="ps-4">
-                                            <div class="dropdown ps-2">
+                                            <div class="dropdown-container ps-2">
                                                 <button class="btn border-0 dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown">
+                                                @click="showDropdownMenu">
                                                     <p class="bi bi-three-dots-vertical"
                                                         style="margin-bottom: -8px; margin-top: -5px;"></p>
                                                 </button>
-                                                <ul class="dropdown-menu border-0">
+                                                <ul v-if="dropdownVisible" class="fixed-dropdown dropdown-menu"
+                                                    style="display: block"
+                                                    :style="{ top: dropdownPosition.top, left: dropdownPosition.left }">
                                                     <h5 class="ms-3 fs-16 fw-normal">Action</h5>
                                                     <li>
                                                         <a class="dropdown-item fw-normal fs-16" href="#"
@@ -313,7 +338,8 @@ onMounted(() => {
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex align-items-center">
                                                         <label for="itemsPerPage" class="me-2">Items per page:</label>
-                                                        <select id="itemsPerPage" class="form-select w-auto bg-none"
+                                                        <select id="itemsPerPage"
+                                                            class="form-select w-auto bg-none border-0"
                                                             v-model="itemsPerPage">
                                                             <option value="10">10</option>
                                                             <option value="20">20</option>
@@ -336,7 +362,7 @@ onMounted(() => {
                                                             :class="{ active: page === currentPage }">
                                                             <a class="page-link" href="#"
                                                                 @click.prevent="goToPage(page)" v-if="page !== '...'">{{
-                                                                page }}</a>
+                                                                    page }}</a>
                                                             <span class="page-link" v-else>...</span>
                                                         </li>
                                                         <li class="page-item"

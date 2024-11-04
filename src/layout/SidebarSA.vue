@@ -14,14 +14,14 @@
                     <span class="mt-2 text p-absolute">Dashboard</span>
                 </router-link>
             </li>
-            <li class="mt-12">
+            <li>
                 <router-link to="/course-manajemen"
                     :class="['nav-link fs-16 bi bi-book ps-4', isActive('/course-manajemen') ? 'active-sidebar' : 'color-sidebar']">
                     <span class="icon"></span>
                     <span class="mt-2 text p-absolute">Course Management</span>
                 </router-link>
             </li>
-            <li class="ms-24 mt-2">
+            <li class="ms-24">
                 <a href="#" @click.prevent="toggleUserManagementDropdown"
                     class="nav-link bi bi-people-fill color-sidebar">
                     <span class="icon"></span>
@@ -53,7 +53,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="mt-2">
+            <li>
                 <a href="#" @click.prevent="toggleCMSDropdown"
                     :class="['nav-link bi bi-file-earmark-plus-fill color-sidebar ps-4', { 'active-sidebar': isCMSActive }]">
                     <span class="icon"></span>
@@ -64,35 +64,35 @@
                 <ul v-show="isUserCMSDropdownOpen" class="dropdown mt--3">
                     <li class="ms-18">
                         <router-link to="/cms/sponsor"
-                            :class="['nav-link', isActive('/cms/sponsor') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/cms/sponsor') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Sponsor</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/cms/media-partner"
-                            :class="['nav-link', isActive('/cms/media-partner') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/cms/media-partner') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Media Partner</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/cms/sosial-media"
-                            :class="['nav-link', isActive('/cms/sosial-media') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/cms/sosial-media') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Sosial Media</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/cms/about-us"
-                            :class="['nav-link', isActive('/cms/about-us') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/cms/about-us') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">About Us Content</span>
                         </router-link>
                     </li>
                 </ul>
             </li>
-            <li class="mt-2">
+            <li>
                 <a href="#" @click.prevent="toggleMasterDataDropdown"
                     :class="['nav-link bi bi-file-earmark-plus-fill color-sidebar ps-4', { 'active-sidebar': isMasterDataActive }]">
                     <span class="icon"></span>
@@ -103,49 +103,49 @@
                 <ul v-show="isUserMasterDataropdownOpen" class="dropdown mt--3">
                     <li class="ms-18">
                         <router-link to="/master-data/level-teacher"
-                            :class="['nav-link', isActive('/master-data/level-teacher') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/master-data/level-teacher') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Level Teacher</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/master-data/level-course"
-                            :class="['nav-link', isActive('/master-data/level-course') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/master-data/level-course') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Level Course</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/master-data/category"
-                            :class="['nav-link', isActive('/master-data/category') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/master-data/category') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Category</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/master-data/skills"
-                            :class="['nav-link', isActive('/master-data/skills') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/master-data/skills') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Skills</span>
                         </router-link>
                     </li>
                     <li class="ms-18">
                         <router-link to="/master-data/tools"
-                            :class="['nav-link', isActive('/master-data/tools') ? 'active-sidebar2' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/master-data/tools') ? 'active-sidebar2' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="ms-4 mt-2 text p-absolute">Tools</span>
                         </router-link>
                     </li>
                 </ul>
             </li>
-            <li class="mt-2">
+            <li>
                 <router-link to="/faq-admin"
                     :class="['nav-link fs-16 bi bi-question-circle-fill ps-4', isActive('/faq-admin') ? 'active-sidebar' : 'color-sidebar']">
                     <span class="icon"></span>
                     <span class="mt-2 text p-absolute">FAQ</span>
                 </router-link>
             </li>
-            <li class="ms-24 mt-2">
+            <li class="ms-24">
                 <a href="#" @click.prevent="toggleSettingsDropdown" class="nav-link bi bi-gear-fill color-sidebar">
                     <span class="icon"></span>
                     <span class="mt-2 text p-absolute">Settings</span>
@@ -155,22 +155,21 @@
                 <ul v-show="isSettingsDropdownOpen" class="dropdown mt--3">
                     <li class="ms-24">
                         <router-link to="/settings/my-profile"
-                            :class="['nav-link', isActive('/settings/m') ? 'active-sidebar' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/settings/m') ? 'active-sidebar' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="mt-2 text p-absolute">---</span>
                         </router-link>
                     </li>
                     <li class="ms-24">
                         <router-link to="/settings/edit-password"
-                            :class="['nav-link', isActive('/settings/ed') ? 'active-sidebar' : 'color-sidebar']">
+                            :class="['nav-link', isActive('/settings/ed') ? 'active-sidebar' : 'color-sidebar2']">
                             <span class="icon"></span>
                             <span class="mt-2 text p-absolute">--</span>
                         </router-link>
                     </li>
                 </ul>
             </li>
-
-            <li class="mt-2">
+            <li>
                 <router-link to="/help-center"
                     :class="['nav-link fs-16 bi bi-info-circle-fill ps-4', isActive('/help-center') ? 'active-sidebar' : 'color-sidebar']">
                     <span class="icon"></span>

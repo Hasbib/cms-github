@@ -23,6 +23,8 @@ const toastMessage = ref('');
 const currentPage = ref(1);
 const itemsPerPage = 10;
 const totalPages = computed(() => Math.ceil(filteredData.value.length / itemsPerPage));
+const dropdownVisible = ref(false);
+const dropdownPosition = ref({ top: '0px', left: '0px' });
 
 const form = ref({
     name: '',
@@ -31,6 +33,25 @@ const form = ref({
     point_quiz: '',
     point_course_completion: '',
 });
+
+const showDropdownMenu = (event) => {
+    const buttonRect = event.target.getBoundingClientRect();
+    dropdownPosition.value = {
+        top: `${buttonRect.bottom}px`,
+        left: `${buttonRect.left - 130}px`
+    };
+    dropdownVisible.value = true;
+};
+
+const hideDropdownMenu = () => {
+    dropdownVisible.value = false;
+};
+
+const handleClickOutside = (event) => {
+    if (!event.target.closest('.dropdown-container')) {
+        hideDropdownMenu();
+    }
+};
 
 const filteredData = computed(() => {
     let sortedData = [...levelcourseData.value];
@@ -209,10 +230,12 @@ const checkWindowSize = () => {
 onMounted(() => {
     checkWindowSize();
     window.addEventListener('resize', checkWindowSize);
+    document.addEventListener('click', handleClickOutside);
 });
 
 onUnmounted(() => {
     window.removeEventListener('resize', checkWindowSize);
+    document.removeEventListener('click', handleClickOutside);
 })
 </script>
 
@@ -320,13 +343,15 @@ onUnmounted(() => {
                                         <td>{{ item.point_assignment }} point</td>
                                         <td>{{ item.point_course_completion }} point</td>
                                         <td class="ps-4">
-                                            <div class="dropdown ps-2">
+                                            <div class="dropdown-container ps-2">
                                                 <button class="btn border-0 dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown">
+                                                @click="showDropdownMenu">
                                                     <p class="bi bi-three-dots-vertical"
                                                         style="margin-bottom: -8px; margin-top: -5px;"></p>
                                                 </button>
-                                                <ul class="dropdown-menu border-0">
+                                                <ul v-if="dropdownVisible" class="fixed-dropdown dropdown-menu"
+                                                    style="display: block"
+                                                    :style="{ top: dropdownPosition.top, left: dropdownPosition.left }">
                                                     <h5 class="ms-3 fs-16 fw-normal">Action</h5>
                                                     <li>
                                                         <a class="dropdown-item fw-normal fs-16" href="#"
@@ -349,20 +374,23 @@ onUnmounted(() => {
                                     <tr>
                                         <td colspan="7" class="p-1">
                                             <nav>
-                                                <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex justify-content-between">
                                                     <div class="d-flex align-items-center">
                                                         <label for="itemsPerPage" class="me-2">Items per page:</label>
-                                                        <select id="itemsPerPage" class="form-select w-auto bg-none"
+                                                        <select id="itemsPerPage"
+                                                            class="form-select w-auto bg-none border-0"
                                                             v-model="itemsPerPage">
                                                             <option value="10">10</option>
                                                             <option value="20">20</option>
                                                             <option value="50">50</option>
                                                         </select>
+                                                        <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} -
+                                                            {{
+                                                                Math.min(currentPage * itemsPerPage, filteredData.length) }}
+                                                            of
+                                                            {{ filteredData.length }} items</span>
                                                     </div>
-                                                    <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} - {{
-                                                        Math.min(currentPage * itemsPerPage, filteredData.length) }} of
-                                                        {{ filteredData.length }} items</span>
-                                                    <ul class="pagination custom-pagination mb-0">
+                                                    <ul class="pagination custom-pagination justify-content-end">
                                                         <li class="page-item" :class="{ disabled: currentPage === 1 }">
                                                             <a class="page-link" href="#"
                                                                 @click.prevent="goToPage(currentPage - 1)">
@@ -413,32 +441,35 @@ onUnmounted(() => {
                                                     Course</label>
                                                 <input type="text" id="categoryName"
                                                     class="form-control c-border w-66 h-43"
-                                                    placeholder="Nama level Course" v-model="currentLevelCourse.name"/>
+                                                    placeholder="Nama level Course" v-model="currentLevelCourse.name" />
                                             </div>
                                             <div class="d-flex justify-content-between mt-3">
                                                 <label for="categoryName" class="fs-16 mb-0 mt-2">Point Learning</label>
                                                 <input type="text" id="categoryName"
-                                                    class="form-control c-border w-66 h-43"
-                                                    placeholder="Point Learning"  v-model="currentLevelCourse.point_course_content"/>
+                                                    class="form-control c-border w-66 h-43" placeholder="Point Learning"
+                                                    v-model="currentLevelCourse.point_course_content" />
                                             </div>
                                             <div class="d-flex justify-content-between mt-3">
                                                 <label for="categoryName" class="fs-16 mb-0 mt-2">Point Quiz</label>
                                                 <input type="text" id="categoryName"
-                                                    class="form-control c-border w-66 h-43" placeholder="Point Quiz"  v-model="currentLevelCourse.point_quiz"/>
+                                                    class="form-control c-border w-66 h-43" placeholder="Point Quiz"
+                                                    v-model="currentLevelCourse.point_quiz" />
                                             </div>
                                             <div class="d-flex justify-content-between mt-3">
                                                 <label for="categoryName" class="fs-16 mb-0 mt-2">Point
                                                     Assignment</label>
                                                 <input type="text" id="categoryName"
                                                     class="form-control c-border w-66 h-43"
-                                                    placeholder="Point Assignment"  v-model="currentLevelCourse.point_assignment"/>
+                                                    placeholder="Point Assignment"
+                                                    v-model="currentLevelCourse.point_assignment" />
                                             </div>
                                             <div class="d-flex justify-content-between mt-3">
                                                 <label for="categoryName" class="fs-16 mb-0 mt-2">Point
                                                     Completion</label>
                                                 <input type="text" id="categoryName"
                                                     class="form-control c-border w-66 h-43"
-                                                    placeholder="Point Completion"  v-model="currentLevelCourse.point_course_completion"/>
+                                                    placeholder="Point Completion"
+                                                    v-model="currentLevelCourse.point_course_completion" />
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">

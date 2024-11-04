@@ -826,6 +826,11 @@
     border: 1px solid #f4f4f4;
   }
 }
+@media screen and (max-width: 1250px) {
+  .ms--35 {
+    margin-left: 0;
+  }
+}
 @media screen and (max-width: 768px) {
   #contentsa {
     margin-left: 0 !important;
