@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import NavbarSA from '@/layout/NavbarSA.vue';
+import NavbarAdmin from '@/layout/NavbarSA.vue';
 import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonBiru from '@/components/ButtonBiru.vue';
 import ButtonTransparanComponen from '@/components/ButtonTransparanComponen.vue';
@@ -9,16 +9,14 @@ import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 const isSidebarVisible = ref(true);
-const mediapartnersData = ref([]);
-const imagePreview = ref(null);
-// const route = useRoute();
+const usersData = ref([]);
 const router = useRouter();
 const searchQuery = ref('');
 const isModalVisible = ref(false);
 const isEditModalVisible = ref(false);
-const currentMedia = ref(null);
+const currentUsers = ref(null);
 const isDeleteModalVisible = ref(false);
-const mediapartnerToDelete = ref(null);
+const usersToDelete = ref(null);
 const isToastVisible = ref(false);
 const toastMessage = ref('');
 const selectedSort = ref('Sort');
@@ -30,7 +28,6 @@ const dropdownPosition = ref({ top: '0px', left: '0px' });
 
 const form = ref({
     name: '',
-    image: null,
 });
 
 const showDropdownMenu = (event, item) => {
@@ -40,7 +37,7 @@ const showDropdownMenu = (event, item) => {
         left: `${buttonRect.left - 130}px`
     };
     dropdownVisible.value = true;
-    currentMedia.value = item;
+    currentUsers.value = item;
 };
 
 const hideDropdownMenu = () => {
@@ -53,37 +50,15 @@ const handleClickOutside = (event) => {
     }
 };
 
-const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        form.value.image = file;
-        imagePreview.value = URL.createObjectURL(file);
-    } else {
-        form.value.image = null;
-        imagePreview.value = null;
-    }
-};
-
-const handleFileUploadEdit = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        form.value.image = file;
-        imagePreview.value = URL.createObjectURL(file);
-    } else {
-        form.value.image = null;
-        imagePreview.value = null;
-    }
-};
-
 const filteredData = computed(() => {
-    let sortedData = [...mediapartnersData.value];
+    let sortedData = [...usersData.value];
     if (selectedSort.value === 'newest') {
         sortedData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     } else if (selectedSort.value === 'oldest') {
         sortedData.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
     }
-    return sortedData.filter(media =>
-        media.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    return sortedData.filter(users =>
+        users.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 
@@ -98,7 +73,6 @@ const goToPage = (page) => {
         currentPage.value = page;
     }
 };
-
 const pageNumbers = computed(() => {
     const pages = [];
     if (totalPages.value <= 5) {
@@ -115,110 +89,67 @@ const pageNumbers = computed(() => {
     return pages;
 });
 
-const fetchMediaPartnerUsData = async () => {
+const fetchUsersData = async () => {
     try {
-        const response = await axios.get('/media-partners');
-        mediapartnersData.value = response.data;
+        const response = await axios.get('/users');
+        usersData.value = response.data;
     } catch (error) {
-        console.error('Error fetching About Us data:', error);
+        console.error('Error fetching user data:', error);
     }
 };
-
-// const fetchMediaPartneIdrUsData = async () => {
-//     const id = route.params.id;
-//     try {
-//         const response = await axios.get(`/media-partners/${id}`);
-//         form.value.name = response.data.name;
-//         imagePreview.value = `${axios.defaults.baseURL.replace('/api', '')}/storage/uploads/${response.data.image}`;
-//     } catch (error) {
-//         console.error('Error fetching data for edit:', error);
-//     }
-// };
 
 const submitForm = async () => {
-    const formData = new FormData();
-    formData.append('name', form.value.name);
-    if (form.value.image) {
-        formData.append('image', form.value.image);
-    }
-
     try {
-        const response = await axios.post('/media-partners', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-        closeAddMediaPartneryModal();
-        showToast('Add Media Partner successfully!');
-        await fetchMediaPartnerUsData();
-        form.value.name = '';
-        form.value.image = '';
-
+        const response = await axios.post('/', form.value);
         console.log(response.data.message);
-        router.push('/cms/media-partner');
+        closeAddUsersModal();
+        showToast('Add Users successfully!');
+
+        form.value.name = '';
+        await fetchUsersData();
+
+        router.push('/user-manajemen/user');
     } catch (error) {
-        console.error('Error add  Media Partner:', error);
-        showToast('Error Add Media Partner.');
+        console.error('Error deleting users:', error);
+        showToast('Error Add Users.');
     }
 };
 
-const showAddMediaPartnerModal = () => {
+const showAddUsersModal = () => {
     isModalVisible.value = true;
-    form.value.name = '';
-    imagePreview.value = null;
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = '15px';
 };
 
-const closeAddMediaPartneryModal = () => {
+const closeAddUsersModal = () => {
     isModalVisible.value = false;
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
 };
 
-const saveMediaPartner = async () => {
-    const formData = new FormData();
-    formData.append('name', form.value.name);
-    if (form.value.image) formData.append('image', form.value.image);
+const saveUsers = async () => {
 
-    try {
-        if (currentMedia.value) {
-            await axios.post(`/media-partners/${currentMedia.value.id_media_partner}`, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-            fetchMediaPartnerUsData();
-            closeEditMediaPartnerModal();
-            showToast('Updated Media Partner successfully!');
-        }
-    } catch (error) {
-        console.error('Error updating media partner:', error);
-    }
 };
 
-const showEditMediaModal = () => {
-    form.value.name = currentMedia.value.name;
-    form.value.image = null;
-    imagePreview.value = currentMedia.value.image
-        ? `${axios.defaults.baseURL.replace('/api', '')}/uploads/media_partner/${currentMedia.value.image}`
-        : null;
+const showEditUsersModal = () => {
+    form.value.name = currentUsers.value.name;
     isEditModalVisible.value = true;
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = '15px';
 };
 
-
-const closeEditMediaPartnerModal = () => {
+const closeEditUsersModal = () => {
     isEditModalVisible.value = false;
-    currentMedia.value = null;
+    currentUsers.value = null;
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
 };
 
-const showDeleteMediaModal = () => {
+const showDeleteUsersModal = () => {
     isDeleteModalVisible.value = true;
 
     document.documentElement.style.overflow = 'hidden';
@@ -226,27 +157,26 @@ const showDeleteMediaModal = () => {
     document.body.style.paddingRight = '15px';
 };
 
-const closeDeleteMediaPartnerModal = () => {
+const closeDeleteUsersModal = () => {
     isDeleteModalVisible.value = false;
-    mediapartnerToDelete.value = null;
+    usersToDelete.value = null;
 
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
 };
 
-const deleteMediaPartner = async () => {
-    try {
-        if (currentMedia.value) {
-            await axios.delete(`/media-partners/${currentMedia.value.id_media_partner}`);
-            fetchMediaPartnerUsData();
-            closeModal();
-            showToast('Media Partner deleted successfully!');
-        }
-    } catch (error) {
-        console.error('Error deleting media partner:', error);
-        showToast('Error deleting Media Partner.');
-    }
+const deleteUsers = async () => {
+    // try {
+    //     if () {
+    //         await axios.delete();
+    //         fetchUsersData();
+    //         closeModal();
+    //         showToast('Users deleted successfully!');
+    //     }
+    // } catch (error) {
+    //     console.error('Error deleting users:', error);
+    // }
 };
 
 const showToast = (message) => {
@@ -257,16 +187,15 @@ const showToast = (message) => {
     }, 3000);
 };
 
-const closeModal = () => {
-    isDeleteModalVisible.value = false;
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-};
+// const closeModal = () => {
+//     isDeleteModalVisible.value = false;
+//     document.documentElement.style.overflow = '';
+//     document.body.style.overflow = '';
+//     document.body.style.paddingRight = '';
+// };
 
 onMounted(() => {
-    fetchMediaPartnerUsData();
-    // fetchMediaPartneIdrUsData();
+    fetchUsersData();
 });
 
 const checkWindowSize = () => {
@@ -289,7 +218,7 @@ onUnmounted(() => {
 <template>
     <div class="navbg-sa">
         <!-- NAVBAR START -->
-        <NavbarSA />
+        <NavbarAdmin />
         <!-- NAVBAR END -->
 
         <!-- SIDEBAR START -->
@@ -299,47 +228,50 @@ onUnmounted(() => {
         <div id="contentsa" class="dashboard-sa">
             <div class="container mt-80">
                 <div class="row">
-                    <div class="col-md-12 mt-4 mt-md-0">
-                        <div class="cbg-card rounded-3 p-4 border-0">
-                            <h5 class="fw-light fs-16">Digitefa/CMS/Media Partner</h5>
-                            <h4 class="fs-24">Media Partner</h4>
-                            <div class="d-flex justify-content-between mb-3 mt-4">
-                                <div class="d-flex justify-content-start">
-                                    <div class="search-input w-50 me-md-1">
-                                        <input type="text" class="form-control rounded-3 h-40 c-border"
-                                            v-model="searchQuery" placeholder="Search" />
-                                        <i class="bi bi-search"></i>
-                                    </div>
-                                    <select class="form-select w-30 c-border ms-2 h-40 c-border" v-model="selectedSort">
-                                        <option selected>Sort</option>
-                                        <option value="newest">Newest</option>
-                                        <option value="oldest">Oldest</option>
-                                    </select>
-                                </div>
-                                <ButtonBiru class="fs-16 px-3 rounded-3 h-40" @click="showAddMediaPartnerModal">Add
-                                    Media
-                                </ButtonBiru>
+                    <div class="cbg-card rounded-2 p-4 border-0">
+                        <h5 class="fw-light fs-16">Digitefa/Course Manajemen/User</h5>
+                        <h4 class="fs-24">User</h4>
+                        <div class="d-flex justify-content-end">
+                            <div class="search-input w-25 me-md-1">
+                                <input type="text" class="form-control rounded-3 h-40 c-border" v-model="searchQuery"
+                                    placeholder="Search" />
+                                <i class="bi bi-search mt--10"></i>
                             </div>
+                            <select class="form-select w-13 c-border h-40 ms-2">
+                                <option selected>Status</option>
+                                <option value="verified">Verified</option>
+                                <option value="unverified">Unverified</option>
+                            </select>
+                            <select class="form-select w-13 c-border h-40 ms-2" v-model="selectedSort">
+                                <option selected>Sort</option>
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                            </select>
+                            <ButtonBiru class="ms-3 mb-4 h-40 px-3 rounded-3 fs-16" @click="showAddUsersModal">
+                                Add User
+                            </ButtonBiru>
+                        </div>
+                        <div class="col-md-12 mt-4 mt-md-0">
                             <div class="table-responsive">
                                 <table class="table custom-table rounded-4">
                                     <thead class="thead-custom">
                                         <tr class="ps-4">
                                             <th class="ps-3 fs-16 fw-light w-1">No</th>
-                                            <th class="fs-16 fw-light w-200">Logo Media Partner</th>
-                                            <th class="fs-16 fw-light w-400">Nama Media Partner</th>
+                                            <th class="fs-16 fw-light w-400">Name Users</th>
+                                            <th class="fs-16 fw-light w-400">Email</th>
+                                            <th class="fs-16 fw-light w-200">Status verify</th>
+                                            <th class="fs-16 fw-light w-150">Role</th>
                                             <th class="ps-4 fs-16 fw-light w-10">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-custom">
                                         <tr v-for="(item, index) in paginatedData" :key="item.id">
-                                            <td class="ps-4 pt-4">{{ (currentPage - 1) * itemsPerPage + index +
-                                                1 }}</td>
-                                            <td>
-                                                <img :src="`${axios.defaults.baseURL.replace('/api', '')}/uploads/media_partner/${item.image}`"
-                                                    class="rounded-4 image-tabel-sa">
-                                            </td>
-                                            <td class="pt-4">{{ item.name }}</td>
-                                            <td class="ps-4 pt-4">
+                                            <td class="ps-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.email }}</td>
+                                            <td>{{ item.is_verified ? 'Verified' : 'Unverified' }}</td>
+                                            <td>{{ item.role }}</td>
+                                            <td class="ps-4">
                                                 <div class="dropdown-container ps-2">
                                                     <button class="btn border-0 dropdown-toggle" type="button"
                                                         @click="showDropdownMenu($event, item)">
@@ -352,14 +284,14 @@ onUnmounted(() => {
                                                         <h5 class="ms-3 fs-16 fw-normal">Action</h5>
                                                         <li>
                                                             <a class="dropdown-item fw-normal fs-16" href="#"
-                                                                @click="showEditMediaModal">
+                                                                @click="showEditUsersModal">
                                                                 <i class="bi bi-pencil-square me-1 fs-16"></i>
                                                                 Edit
                                                             </a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item fw-normal" href="#"
-                                                                @click="showDeleteMediaModal">
+                                                                @click="showDeleteUsersModal">
                                                                 <i class="bi bi-trash me-1 fs-16"></i>
                                                                 Delete
                                                             </a>
@@ -369,7 +301,7 @@ onUnmounted(() => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="4" class="p-1">
+                                            <td colspan="6" class="p-1">
                                                 <nav>
                                                     <div class="d-flex justify-content-between">
                                                         <div class="d-flex align-items-center">
@@ -382,15 +314,16 @@ onUnmounted(() => {
                                                                 <option value="20">20</option>
                                                                 <option value="50">50</option>
                                                             </select>
-                                                            <span class="fs-16">{{ (currentPage - 1) *
-                                                                itemsPerPage + 1 }} -
+                                                            <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1
+                                                                }} -
                                                                 {{
                                                                     Math.min(currentPage * itemsPerPage,
                                                                         filteredData.length) }}
                                                                 of
                                                                 {{ filteredData.length }} items</span>
                                                         </div>
-                                                        <ul class="pagination custom-pagination justify-content-end">
+                                                        <ul
+                                                            class="pagination custom-pagination justify-content-end mt-1">
                                                             <li class="page-item"
                                                                 :class="{ disabled: currentPage === 1 }">
                                                                 <a class="page-link" href="#"
@@ -425,45 +358,51 @@ onUnmounted(() => {
                         </div>
                     </div>
                 </div>
+
                 <!-- Add Modal -->
-                <div v-if="isModalVisible" class="modal-backdrop" @click="closeAddMediaPartneryModal"></div>
+                <div v-if="isModalVisible" class="modal-backdrop" @click="closeAddUsersModal"></div>
                 <div v-if="isModalVisible" class="modal fade show d-block" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeAddMediaPartneryModal">
+                    aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeAddUsersModal">
                     <div class="modal-dialog custom-modal modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header mb--3">
                                 <h5 class="fs-16 fw-medium" id="exampleModalLabel">
-                                    <i class="bi bi-file-earmark-plus me-1"></i>Add Media Partner
+                                    <i class="bi bi-file-earmark-plus me-1"></i>Add User
                                 </h5>
                                 <button type="button" class="btn-close fs-12 c-close"
-                                    @click="closeAddMediaPartneryModal"></button>
+                                    @click="closeAddUsersModal"></button>
                             </div>
                             <hr class="mt-0">
-                            <div class="ps-3 pe-4 mt-3 mb-2">
-                                <div class="d-flex align-items-center">
-                                    <label for="mediapartnerName" class="me-5 fs-16 mb-0">Name</label>
-                                    <input type="text" id="mediapartnerName" class="form-control w-100 h-45 c-border"
-                                        placeholder="Enter media partner name" v-model="form.name" />
+                            <div class="px-3 mb-2">
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="userName" class="me-3 fs-16 mb-0 mt-2">Name</label>
+                                    <input type="text" id="userName" class="form-control w-75 h-43"
+                                        placeholder="Enter user name" v-model="form.name" />
                                 </div>
-                                <div class="d-flex align-items-start mt-3">
-                                    <label for="categoryName" class="fs-16 mb-0 me-60">Logo</label>
-                                    <div>
-                                        <img v-if="imagePreview" :src="imagePreview" alt="Image Preview"
-                                            class="img-fluid mb-2 rounded-2"
-                                            style="max-height: 100px; max-width: 105px; display: block;">
-                                        <input type="file" id="fileInput" class="hidden" accept="image/*"
-                                            @change="handleFileUpload" />
-                                        <button type="button" class="btn c-border px-4 py-2"
-                                            onclick="document.getElementById('fileInput').click();">
-                                            Upload
-                                        </button>
-                                    </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="emailName" class="me-3 fs-16 mb-0 mt-2">Email</label>
+                                    <input type="email" id="emailName" class="form-control w-75 h-43"
+                                        placeholder="Enter email name" v-model="form.email" />
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="passwordName" class="me-3 fs-16 mb-0 mt-2">Password</label>
+                                    <input type="password" id="passwordName" class="form-control w-75 h-43"
+                                        placeholder="Enter password name" v-model="form.password" />
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="studentName" class="me-3 fs-16 mb-0 mt-2">Role</label>
+                                    <select class="form-select w-75 h-40 ms-2">
+                                        <option selected>Pilih Role</option>
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="superadmin">Superadmin</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mb-5">
                                 <ButtonTransparanComponen
                                     class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
-                                    @click="closeAddMediaPartneryModal">Cancel</ButtonTransparanComponen>
+                                    @click="closeAddUsersModal">Cancel</ButtonTransparanComponen>
                                 <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16" @click="submitForm">
                                     Save</ButtonBiru>
                             </div>
@@ -472,77 +411,87 @@ onUnmounted(() => {
                 </div>
 
                 <!-- Edit Modal -->
-                <div v-if="isEditModalVisible" class="modal-backdrop" @click="closeEditMediaPartnerModal">
+                <div v-if="isEditModalVisible" class="modal-backdrop" @click="closeEditUsersModal">
                 </div>
                 <div v-if="isEditModalVisible" class="modal fade show d-block" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="false" @click.self="closeEditMediaPartnerModal">
+                    aria-labelledby="exampleModalLabel" aria-hidden="false" @click.self="closeEditUsersModal">
                     <div class="modal-dialog custom-modal modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header mb--3">
                                 <h5 class="fs-16 fw-medium" id="exampleModalLabel">
-                                    <i class="bi bi-pencil-square me-1"></i>Edit Media Partner
+                                    <i class="bi bi-pencil-square me-1"></i>Edit Users
                                 </h5>
                                 <button type="button" class="btn-close fs-12 c-close"
-                                    @click="closeEditMediaPartnerModal"></button>
+                                    @click="closeEditUsersModal"></button>
                             </div>
                             <hr class="mt-0">
                             <div class="ps-3 mt-3 mb-2">
-                                <div class="d-flex align-items-center">
-                                    <label for="editCategoryName" class="me-5 fs-16 mb-0">Name
-                                    </label>
-                                    <input type="text" id="editCategoryName" v-model="form.name"
-                                        class="form-control w-66 h-45 c-border"
-                                        placeholder="Enter media partner name" />
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="userName" class="me-3 fs-16 mb-0 mt-2">Name</label>
+                                    <input type="text" id="userName" class="form-control w-75 h-43"
+                                        placeholder="Enter user name" v-model="form.name" />
                                 </div>
-                                <div class="d-flex align-items-center mt-3">
-                                    <label for="categoryName" class="fs-16 mb-0 me-60 mt--85">Logo</label>
-                                    <div>
-                                        <img v-if="imagePreview" :src="imagePreview" alt="Image Preview"
-                                            class="img-fluid mb-2 rounded-2"
-                                            style="max-height: 100px; max-width: 105px; display: block;">
-                                        <input type="file" id="fileInput" class="hidden" accept="image/*"
-                                            @change="handleFileUploadEdit" />
-                                        <button type="button" class="btn c-border px-4 py-2 mt-2"
-                                            onclick="document.getElementById('fileInput').click();">
-                                            Upload
-                                        </button>
-                                    </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="userEmail" class="me-3 fs-16 mb-0 mt-2">Email</label>
+                                    <input type="email" id="userEmail" class="form-control w-75 h-43"
+                                        placeholder="Enter email name" v-model="form.email" />
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="userPassword" class="me-3 fs-16 mb-0 mt-2">Password</label>
+                                    <input type="password" id="userPassword" class="form-control w-75 h-43"
+                                        placeholder="Enter password name" v-model="form.password" />
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="userRole" class="me-3 fs-16 mb-0 mt-2">Role</label>
+                                    <select class="form-select w-75 h-40 ms-2">
+                                        <option selected>Pilih Role</option>
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="superadmin">Superadmin</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <label for="userStatus" class="me-3 fs-16 mb-0 mt-2">Status</label>
+                                    <select class="form-select w-75 h-40 ms-2">
+                                        <option selected>Verified</option>
+                                        <option value="unverified">Unverified</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mb-5">
                                 <ButtonTransparanComponen
-                                    class="mt-4 my-0 h-40 w-25 me-5 rounded-3 c-border bg-white fs-16"
-                                    @click="closeEditMediaPartnerModal">Cancel</ButtonTransparanComponen>
-                                <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-25 rounded-3 fs-16" @click="saveMediaPartner">
-                                    Save</ButtonBiru>
+                                    class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
+                                    @click="closeEditUsersModal">Cancel</ButtonTransparanComponen>
+                                <ButtonBiru class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16" @click="saveUsers">Save
+                                </ButtonBiru>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Delete Modal -->
-                <div v-if="isDeleteModalVisible" class="modal-backdrop" @click="closeDeleteMediaPartnerModal">
+                <div v-if="isDeleteModalVisible" class="modal-backdrop" @click="closeDeleteUsersModal">
                 </div>
                 <div v-if="isDeleteModalVisible" class="modal fade show d-block" role="dialog"
-                    aria-labelledby="deleteModalLabel" aria-hidden="true" @click.self="closeDeleteMediaPartnerModal">
+                    aria-labelledby="deleteModalLabel" aria-hidden="true" @click.self="closeDeleteUsersModal">
                     <div class="modal-dialog custom-modal modal-dialog-centered">
                         <div class="modal-content pt-3">
                             <div
                                 class="modal-header mb-3 d-flex flex-column justify-content-center align-items-center text-center">
                                 <PhTrashSimple :size="50" color="#ff4c4c" />
-                                <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Media Partner</h5>
+                                <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Users</h5>
                                 <h5 class="fs-16 fw-light opacity-50">
-                                    Are you sure you want to delete this media partner? Once deleted, this
+                                    Are you sure you want to delete this users? Once deleted, this
                                     data
                                     cannot be restored.
                                 </h5>
                             </div>
                             <div class="d-flex justify-content-center mb-5">
                                 <ButtonTransparanComponen class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16"
-                                    @click="closeDeleteMediaPartnerModal">No, Cancel
+                                    @click="closeDeleteUsersModal">No, Cancel
                                 </ButtonTransparanComponen>
-                                <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16" @click="deleteMediaPartner">
-                                    Yes, Delete</ButtonMerah>
+                                <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16" @click="deleteUsers">Yes,
+                                    Delete</ButtonMerah>
                             </div>
                         </div>
                     </div>

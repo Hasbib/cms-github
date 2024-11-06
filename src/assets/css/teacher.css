@@ -1,0 +1,164 @@
+/* ===== NAV SA START ===== */
+#contentte {
+  margin-left: 270px;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+}
+#contentte.collapsed {
+  margin-left: 60px;
+}
+.navbg-te .ul ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.navbg-te .platform {
+  display: inline-block;
+  width: 80px;
+}
+.navbg-te {
+  background: rgb(249, 249, 249, 1);
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
+}
+.nav-te .navbar {
+  background-color: #ffffff;
+  height: 80px;
+  z-index: 1000;
+  border-bottom: 1px solid #bbbbbb;
+}
+/* ===== NAV SA END ===== */
+
+/* ===== SIDEBAR SA START ===== */
+#sidebarte {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  height: calc(100% - 80px);
+  width: 280px;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+  z-index: 100;
+  border-right: 1px solid #bbbbbb;
+  overflow-y: scroll;
+}
+#sidebarte::-webkit-scrollbar {
+  display: none;
+}
+#sidebarte {
+  scrollbar-width: none;
+}
+
+#sidebarte.collapsed {
+  width: 70px;
+}
+
+#sidebarte.collapsed a span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#sidebarte ul {
+  padding: 0;
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+#sidebarte ul li a {
+  color: white;
+  text-decoration: none;
+}
+#sidebarte ul li a.active {
+  color: black;
+}
+#sidebarte ul li a span {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#sidebarte.collapsed ul li a span {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#sidebarte ul li a .icon {
+  transition: transform 0.3s ease;
+}
+#sidebarte.collapsed ul li a .icon {
+  transform: scale(1.2);
+}
+.sd .menu-text-te {
+  font-size: 25px;
+  font-weight: 300;
+  top: 13px;
+  left: 18px;
+  position: absolute;
+}
+.icon {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  margin-right: 13px;
+}
+.side.collapsed .menu-text-te,
+.side.collapsed .menu-text-te {
+  display: none;
+}
+.toggle-teacher {
+  font-size: 24px;
+  color: #ffffff;
+  margin-right: 2px;
+}
+.sidebar-te .color-sidebar {
+  color: #303030 !important;
+  font-weight: 500;
+  height: 50px;
+  padding-top: 6px;
+}
+.sidebar-te .color-sidebar2 {
+  color: #303030 !important;
+  font-weight: 500;
+}
+.sidebar-te .nav-link:hover {
+  color: #0d92f4 !important;
+}
+.sidebar-te .active-sidebar {
+  color: #0d92f4 !important;
+  font-weight: 500;
+  background-color: #e7f4fe;
+  height: 50px;
+  padding-top: 6px;
+}
+.sidebar-te .active-sidebar2 {
+  color: #0d92f4 !important;
+  font-weight: 500;
+}
+.sd .menu-logo-te {
+  font-size: 25px;
+  font-weight: 300;
+  top: 13px;
+  left: 25px;
+  position: absolute;
+}
+.side.collapsed .menu-logo-te,
+.side.collapsed .menu-text {
+  display: none;
+}
+#toggle-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: white;
+  background: none;
+  border: none;
+}
+/* ===== SIDEBAR SA END ===== */
+
+/* ===== AUTH START ===== */
+.bg-blok {
+    height: 100vh;
+}
+/* ===== AUTH END ===== */
+

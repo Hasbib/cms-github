@@ -350,6 +350,9 @@ nav.scrolled {
 .ms-33 {
   margin-left: 33px;
 }
+.ms-42 {
+  margin-left: 42px;
+}
 .ms--10 {
   margin-left: -5px;
 }
@@ -432,6 +435,9 @@ nav.scrolled {
 }
 .text-merah {
   color: #ff4c4c;
+}
+.card-abu-muda {
+  background-color: #e9e9e9;
 }
 /* ===== COLOR END ===== */
 
@@ -705,6 +711,21 @@ nav.scrolled {
   border: none !important;
 }
 
+.btn-red {
+  background-color: var(--colorRed);
+  color: white;
+  border: none;
+  padding: 0px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-red:hover,
+.btn-red:active,
+.btn-red:focus {
+  background-color: #f32719 !important;
+  border: none !important;
+}
+
 .btn-tag {
   background-color: #f4f7fe;
   color: #303030;
@@ -712,6 +733,14 @@ nav.scrolled {
   padding: 0px 20px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn-plus {
+  width: 40px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pagination {

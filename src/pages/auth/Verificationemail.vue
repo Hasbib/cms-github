@@ -2,12 +2,10 @@
 import { ref, nextTick, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
-import ButtonSuccess from '@/components/ButtonSuccess.vue';
+import ButtonBiru from '@/components/ButtonBiru.vue';
 import Swal from 'sweetalert2';
-import { useStore } from 'vuex'; // Import Vuex store
 
 const router = useRouter();
-const store = useStore();
 
 const otp = ref(['', '', '', '']);
 const email = ref('');
@@ -42,24 +40,26 @@ const onlyNumber = (event) => {
 const handleSubmit = async () => {
   const verification_code = otp.value.join('');
   try {
-    // Kirim permintaan verifikasi kode registrasi
-    const response = await axios.post('/verify-registration-code', {
+    await axios.post('/verify-email', {
       email: email.value,
       verification_code: verification_code,
     });
-    
-    // Ambil token dari respons dan simpan ke Vuex untuk login otomatis
-    const token = response.data.token;
-    await store.dispatch('setToken', token); // Menyimpan token ke Vuex
 
     Swal.fire({
       title: "Sukses!",
-      text: "Anda telah berhasil login",
+      text: "Email verified successfully",
       icon: "success",
       confirmButtonColor: '#06A73B',
-      confirmButtonText: 'Go to Dashboard',
+      confirmButtonText: 'Login Now',
+      customClass: {
+        confirmButton: 'custom-button',
+      },
+      didOpen: () => {
+        const confirmButton = Swal.getConfirmButton();
+        confirmButton.classList.add('custom-button');
+      },
     }).then(() => {
-      router.push('/dashboard-teacher'); // Arahkan ke dashboard teacher
+      router.push('/');
     });
   } catch (error) {
     notification.value = error.response?.data?.message || 'Verification failed, please check your code and try again.';
@@ -106,10 +106,9 @@ const resendVerificationCode = async () => {
                 @keypress="onlyNumber" />
             </div>
             <img src="../../assets/images/vc.png" alt="" class="image-reset">
-            <ButtonSuccess class="mb-3 h-48 w-75 fs-16 mt-3" :class="['btn', 'btn-success']"
-              :disabled="isSubmitDisabled">
+            <ButtonBiru class="mb-3 h-48 w-75 fs-16 mt-3" :class="['btn', 'btn-success']" :disabled="isSubmitDisabled">
               Verify Now
-            </ButtonSuccess>
+            </ButtonBiru>
           </form>
           <p class="resend text-muted mb--6 fs-16 fw-light">
             Didn't you receive any code?

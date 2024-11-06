@@ -16,7 +16,6 @@
   transition: margin-left 0.3s ease;
   padding: 20px;
 } */
-
 #contentsa {
   margin-left: 270px;
   transition: margin-left 0.3s ease;
@@ -67,7 +66,7 @@
   overflow-y: scroll;
 }
 #sidebarsa::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 #sidebarsa {
   scrollbar-width: none;
@@ -222,7 +221,7 @@
   cursor: default;
 }
 .dashboard-sa .pagination .page-link:hover {
-  background-color: #A8A8A8;
+  background-color: #a8a8a8;
 }
 /* ==== PAGINATION SA ==== */
 
@@ -244,6 +243,18 @@
 .bg-login-admin {
   background-color: rgb(255, 255, 255, 1);
 }
+.body-login-profile {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  position: relative;
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(244, 247, 254, 1);
+  display: flex;
+}
 /* ==== BODY SA END ==== */
 
 /* ==== BUTTON SA START ==== */
@@ -257,7 +268,7 @@
 }
 .btn-biru:hover,
 .btn-biru:active,
-.btn-orange:focus {
+.btn-biru:focus {
   background-color: rgb(0, 149, 255) !important;
   color: white !important;
   border: none !important;
@@ -275,6 +286,18 @@
   height: 35px;
   width: 35px;
   color: white;
+}
+.btn-border {
+  border-color: #bbbbbb;
+  border-width: 1px;
+  border-style: solid;
+}
+.btn-border:hover,
+.btn-border:active,
+.btn-border:focus {
+  border-color: #bbbbbb;
+  border-width: 1px;
+  border-style: solid;
 }
 /* ==== BUTTON SA END ==== */
 
@@ -416,14 +439,6 @@
   overflow-x: hidden;
 }
 
-.fixed-dropdown {
-  position: fixed;
-  z-index: 2000;
-  background-color: #e9e9e9;
-  min-width: 150px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
 .dashboard-sa .gap-4 .pointer {
   cursor: pointer;
   transition: background-color 0.3s, opacity 0.3s, color 0.3s;
@@ -432,7 +447,7 @@
 }
 
 .dashboard-sa .gap-4 .active-tab {
-  color: #0D92F4;
+  color: #0d92f4;
 }
 
 .border-spasi {
@@ -452,4 +467,13 @@
   color: #aaa;
   font-size: 15px;
   pointer-events: none;
+}
+
+.profil-teacher {
+  width: 110px;
+  height: 100px;
+}
+
+.cbg-card {
+  background-color: #ffffff;
 }

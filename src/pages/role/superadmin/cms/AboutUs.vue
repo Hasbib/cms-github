@@ -3,18 +3,87 @@ import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue';
 import NavbarAdmin from '@/layout/NavbarSA.vue';
 import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonBiru from '@/components/ButtonBiru.vue';
+import axios from 'axios';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
 const isSidebarVisible = ref(true);
 const isEditing = ref(false);
 const quill = ref(null);
+const title = ref('');
+const description = ref('');
+const image = ref(null);
+const content = ref('');
+const imagePreview = ref(null);
+const isToastVisible = ref(false);
+const toastMessage = ref('');
 
 const checkWindowSize = () => {
     isSidebarVisible.value = window.innerWidth >= 770;
 };
 
+// Mengambil data About Us
+const fetchAboutUsContent = async () => {
+    try {
+        const response = await axios.get('/about-us');
+        title.value = response.data.title;
+        description.value = response.data.description;
+        content.value = response.data.content;
+        if (response.data.image) {
+            imagePreview.value = `${axios.defaults.baseURL.replace('/api', '')}/uploads/${response.data.image}`;
+        }
+    } catch (error) {
+        console.error("Error fetching About Us content:", error);
+    }
+};
+
+// Menyimpan data About Us
+const saveChanges = async () => {
+    const editedContent = getModifiedContent();
+    const formData = new FormData();
+    formData.append('title', title.value);
+    formData.append('description', description.value);
+    formData.append('content', editedContent);
+    if (image.value) {
+        formData.append('image', image.value);
+    }
+
+    try {
+        await axios.post('/about-us/update', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        
+        content.value = editedContent;
+        isEditing.value = false;
+        
+        // Panggil fetch untuk memuat ulang data terbaru
+        fetchAboutUsContent();
+
+        // Hapus instance Quill setelah keluar dari mode edit
+        if (quill.value) {
+            quill.value = null;
+        }
+
+        showToast('About Us updated successfully!');
+
+    } catch (error) {
+        console.error("Error saving content:", error);
+        showToast('Error updating About Us.');
+    }
+};
+
+
+// Memproses file image
+const handleFileUploadEdit = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        image.value = file;
+        imagePreview.value = URL.createObjectURL(file);
+    }
+};
+
 onMounted(() => {
+    fetchAboutUsContent();
     checkWindowSize();
     window.addEventListener('resize', checkWindowSize);
 });
@@ -26,6 +95,11 @@ onUnmounted(() => {
 watch(isEditing, async (newValue) => {
     if (newValue) {
         await nextTick();
+
+        // Periksa apakah Quill sudah ada, jika ya, hapus instance sebelumnya
+        if (quill.value) {
+            quill.value = null; // Menghapus instance sebelumnya
+        }
 
         const fontSizeArr = [];
         for (let i = 8; i <= 72; i += 2) {
@@ -39,7 +113,7 @@ watch(isEditing, async (newValue) => {
         const toolbarOptions = [
             [{ header: [1, 2, 3, false] }],
             ['bold', 'italic', 'underline'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ list: 'bullet' }],
             [{ indent: '-1' }, { indent: '+1' }],
             [{ align: [] }],
             ['link', 'image'],
@@ -58,74 +132,149 @@ watch(isEditing, async (newValue) => {
                 },
                 theme: 'snow',
             });
+            quill.value.root.innerHTML = content.value; // Set initial content
+        }
+    } else {
+        // Hapus instance Quill saat keluar dari mode edit
+        if (quill.value) {
+            quill.value = null;
         }
     }
 });
 
-const toggleEditMode = () => {
-    isEditing.value = !isEditing.value;
+const getModifiedContent = () => {
+    let modifiedContent = quill.value.root.innerHTML;
+    // Convert <ol> to <ul>
+    modifiedContent = modifiedContent.replace(/<ol>/g, '<ul>').replace(/<\/ol>/g, '</ul>');
+    return modifiedContent;
 };
 
-const saveChanges = () => {
-    isEditing.value = false;
+const showToast = (message) => {
+    toastMessage.value = message;
+    isToastVisible.value = true;
+    setTimeout(() => {
+        isToastVisible.value = false;
+    }, 3000);
+};
+
+const toggleEditMode = () => {
+    if (isEditing.value) {
+        saveChanges();
+    }
+    isEditing.value = !isEditing.value;
 };
 </script>
 
+
 <template>
     <div class="navbg-sa">
-        <!-- NAVBAR START -->
         <NavbarAdmin />
-        <!-- NAVBAR END -->
-
-        <!-- SIDEBAR START -->
         <SidebarSA v-if="isSidebarVisible" />
-        <!-- SIDEBAR END -->
-
         <div id="contentsa" class="dashboard-sa">
             <div class="container mt-80">
                 <div class="row">
                     <div class="col-md-12 mt-4 mt-md-0">
-                        <!-- View Mode -->
-                        <div v-if="!isEditing">
-                            <div class="card rounded-2 p-4 border-0">
-                                <h5 class="fw-light fs-16">Digitefa/CMS/ About Us Content</h5>
-                                <h4 class="fs-24">About Us Content</h4>
-                                <div class="d-flex justify-content-end">
-                                    <ButtonBiru @click="toggleEditMode" class="ms-3 mb-4 h-45 px-3 rounded-3 fs-16">
-                                        <i class="bi bi-pencil-square me-1 fs-16"></i>
-                                        Edit About Us
-                                    </ButtonBiru>
-                                </div>
-                                <div class="card bordersa p-4">
-                                    <h4 class="fs-40 mb-3">About Us</h4>
-                                    <h4 class="fs-40">Digitefa: Solusi E-Learning untuk <br />Mengembangkan Karier dan
-                                        Potensimu</h4>
-                                    <p class="fs-16">Digitefa hadir sebagai platform e-learning yang berfokus untuk
-                                        membantumu berkembang
-                                        dengan keterampilan yang relevan di dunia industri dan teknologi. Kami percaya
-                                        bahwa
-                                        pendidikan berkualitas harus dapat diakses oleh semua orang, sehingga kamu bisa
-                                        mencapai tujuan kariermu dengan lebih percaya d</p>
+                        <div class="card rounded-2 p-4 border-0">
+                            <h5 class="fw-light fs-16">Digitefa/CMS/About Us Content</h5>
+                            <h4 class="fs-24">About Us Content</h4>
+
+                            <div class="d-flex justify-content-end">
+                                <ButtonBiru @click="toggleEditMode" class="ms-3 mb-4 h-45 px-3 rounded-3 fs-16">
+                                    <i class="bi bi-pencil-square me-1 fs-16"></i>
+                                    {{ isEditing ? 'Save' : 'Edit' }} About Us
+                                </ButtonBiru>
+                            </div>
+
+                            <!-- Tampilan Biasa -->
+                            <div v-if="!isEditing" class="card bordersa rounded-3 pb-4">
+                                <div class="ps-3 pe-4 mt-3 mb-2">
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="title" class="fs-16 mb-0 mt-2">Title</label>
+                                        <input type="text" id="title" class="form-control c-border w-75 h-43" :value="title" disabled />
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="description" class="fs-16 mb-0 mt-2">Short Description</label>
+                                        <input type="text" id="description" class="form-control c-border w-75 h-43" :value="description" disabled />
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="content" class="fs-16 mb-0 mt-2">Content</label>
+                                        <div class="form-control w-75 card bordersa p-4" v-html="content"></div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="image" class="fs-16 mb-0 mt-2">Image</label>
+                                        <div class="form-control w-75 c-border image-preview-container">
+                                            <img 
+                                                v-if="imagePreview" 
+                                                :src="imagePreview" 
+                                                alt="Image Preview" 
+                                                class="img-fluid rounded-2" 
+                                            >
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Edit Mode -->
-                        <div v-else>
-                            <div class="card rounded-2 p-4 border-0">
-                                <h4 class="fs-24 mb-4">Edit About Us Content</h4>
-                                <form>
-                                    <div id="editor">
-                                        <p>Hello World!</p>
-                                        <p>Some initial <strong>bold</strong> text</p>
-                                        <p><br /></p>
+                            <!-- Form Edit -->
+                            <form v-else @submit.prevent="saveChanges" class="card bordersa rounded-3 pb-4">
+                                <div class="ps-3 pe-4 mt-3 mb-2">
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="title" class="fs-16 mb-0 mt-2">Title</label>
+                                        <input 
+                                            type="text" 
+                                            id="title" 
+                                            class="form-control c-border w-75 h-43" 
+                                            v-model="title" 
+                                        />
                                     </div>
-                                    <div class="d-flex justify-content-end">
-                                        <ButtonBiru @click="saveChanges" class="ms-3 my-4 h-45 px-3 rounded-3 fs-16">
-                                            Save
-                                        </ButtonBiru>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="description" class="fs-16 mb-0 mt-2">Short Description</label>
+                                        <input 
+                                            type="text" 
+                                            id="description" 
+                                            class="form-control c-border w-75 h-43" 
+                                            v-model="description" 
+                                        />
                                     </div>
-                                </form>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="content" class="fs-16 mb-0 mt-2">Content</label>
+                                        <div class="form-control w-75 card bordersa p-4">
+                                            <div id="editor"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <label for="image" class="fs-16 mb-0 mt-2">Image</label>
+                                        <div class="form-control w-75 c-border image-preview-container">
+                                            <img 
+                                                v-if="imagePreview" 
+                                                :src="imagePreview" 
+                                                alt="Image Preview" 
+                                                class="img-fluid rounded-2" 
+                                            >
+                                            <input 
+                                                type="file" 
+                                                id="fileInput" 
+                                                class="form-control mt-3" 
+                                                accept="image/*" 
+                                                @change="handleFileUploadEdit" 
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- Toast Notification -->
+                            <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
+                                <div v-if="isToastVisible" class="toast align-items-center text-white bg-light-success border-0 show" role="alert">
+                                    <div class="d-flex">
+                                        <div class="toast-body">
+                                            {{ toastMessage }}
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto" aria-label="Close" @click="isToastVisible = false"></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,6 +286,18 @@ const saveChanges = () => {
 
 
 <style>
+.image-preview-container {
+    max-width: 100%;
+    padding: 8px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    text-align: center;
+}
+
+.image-preview-container img {
+    height: auto;
+    max-height: 150px;
+}
 /* Customize toolbar labels for font sizes */
 .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='8px']::before {
     content: '8';

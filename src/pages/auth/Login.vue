@@ -114,7 +114,7 @@ const loginRole = async () => {
                             <label class="form-check-label fs-14" for="exampleCheck1">Remember Me</label>
                         </div>
                         <div>
-                            <a href="/reset-password" class="text-right fs-14 garis- fw-medium">Forgot
+                            <a href="/forgot-password" class="text-right fs-14 garis- fw-medium">Forgot
                                 Password</a>
                         </div>
                     </div>

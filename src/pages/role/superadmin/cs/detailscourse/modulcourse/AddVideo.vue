@@ -2,23 +2,12 @@
 import NavbarSA from '@/layout/NavbarSA.vue';
 import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonBiru from '@/components/ButtonBiru.vue';
-import MultipleSelect from '@/components/MultiselectComponent.vue';
 import { ref, onUnmounted, onMounted } from 'vue';
 
 const isSidebarVisible = ref(true);
+
+
 const fileInput = ref(null);
-
-const toolOptions = [
-  { label: 'Figma', value: 'figma' },
-  { label: 'VS Code', value: 'vscode' },
-  { label: 'Photoshop', value: 'photoshop' },
-  { label: 'Illustrator', value: 'illustrator' },
-];
-
-const skillOptions = [
-  { label: 'Pengetahuan', value: 'pengetahuan' },
-  { label: 'Keterampilan', value: 'keterampilan' },
-];
 
 const openFileDialog = () => {
     fileInput.value.click();
@@ -55,10 +44,10 @@ onUnmounted(() => {
                 <div class="row">
                     <div class="col-md-12 mt-4 mt-md-0">
                         <div class="card rounded-2 p-4 border-0">
-                            <h5 class="fw-light fs-16">Digitefa/Course Manajemen/Add Vidio</h5>
-                            <h4 class="fs-24">Course Manajemen</h4>
+                            <h5 class="fw-light fs-16">Digitefa/Course Management/Add Video</h5>
+                            <h4 class="fs-24">Course Management</h4>
                             <div class="card p-3 bordersa mt-2">
-                                <h5 class="fs-20">Add Vidio</h5>
+                                <h5 class="fs-20">Add Video</h5>
                                 <hr />
                                 <div class="mb-3 row">
                                     <label for="Name" class="col-sm-3 col-form-label fs-16">Name</label>
@@ -68,7 +57,7 @@ onUnmounted(() => {
                                     </div>
                                 </div>
                                 <div class="mb-0 row">
-                                    <label for="linkvideo" class="col-sm-3 col-form-label fs-16">Vidio</label>
+                                    <label for="linkvideo" class="col-sm-3 col-form-label fs-16">Video</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control fs-16 h-43 rounded-3 bordersa"
                                             placeholder="Thumbnail" />
@@ -82,22 +71,10 @@ onUnmounted(() => {
                                             placeholder="Description" required></textarea>
                                     </div>
                                 </div>
-                                <div class="mb-3 row">
-                                    <label for="tools" class="col-sm-3 col-form-label fs-16">Tools</label>
-                                    <div class="col-sm-9">
-                                        <MultipleSelect
-                                        :options="toolOptions"
-                                        placeholder="Select tools"
-                                        />
-                                    </div>
-                                </div>
                                 <div class="mb-0 row">
-                                    <label for="detailskill" class="col-sm-3 col-form-label fs-16">Detail Skill</label>
+                                    <label for="detailsskill" class="col-sm-3 col-form-label fs-16">Details Skill</label>
                                     <div class="col-sm-9">
-                                        <MultipleSelect
-                                        :options="skillOptions"
-                                        placeholder="Select detail skill"
-                                        />
+
                                     </div>
                                 </div>
                                 <div class="mb-0 row">

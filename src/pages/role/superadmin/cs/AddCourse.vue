@@ -3,9 +3,17 @@ import { inject, ref, onMounted, onUnmounted } from 'vue';
 import NavbarSA from '@/layout/NavbarSA.vue';
 import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonBiru from '@/components/ButtonBiru.vue';
+import MultipleSelect from '@/components/MultiselectComponent.vue';
 import 'daterangepicker/daterangepicker.css';
 import $ from 'jquery';
 import 'daterangepicker';
+
+const toolOptions = [
+  { label: 'Figma', value: 'figma' },
+  { label: 'VS Code', value: 'vscode' },
+  { label: 'Photoshop', value: 'photoshop' },
+  { label: 'Illustrator', value: 'illustrator' },
+];
 
 const isSidebarVisible = ref(true);
 const currentPage = inject('currentPage');
@@ -127,6 +135,15 @@ onUnmounted(() => {
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
+                                    <label for="category" class="col-sm-3 col-form-label fs-16">Category</label>
+                                    <div class="col-sm-9">
+                                        <MultipleSelect
+                                        :options="toolOptions"
+                                        placeholder="Select skill"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
                                     <label for="rulesAndConditions" class="col-sm-3 col-form-label fs-16">Rules &
                                         Conditions</label>
                                     <div class="col-sm-9">
@@ -135,7 +152,7 @@ onUnmounted(() => {
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <ButtonBiru class="h-45 px-3 rounded-3 fs-16" @click="goToDetail">
+                                    <ButtonBiru class="h-40 px-3 rounded-3 fs-16" @click="goToDetail">
                                         Submit
                                     </ButtonBiru>
                                 </div>

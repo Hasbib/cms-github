@@ -33,8 +33,8 @@ const showAddVideoPage = () => {
 const showAddEssayPage = () => {
     currentPage.value = 'addEssay';
 };
-const showAddAssementPage = () => {
-    currentPage.value = 'addAssement';
+const showAddAssessmentPage = () => {
+    currentPage.value = 'addAssessment'; 
 };
 
 const toggleButtons = () => {
@@ -57,15 +57,15 @@ onUnmounted(() => {
             <button class="btn border-0 dropdown-toggle" type="button" @click="showDropdownMenu">
                 <p class="bi bi-three-dots-vertical" style="margin-bottom: -8px; margin-top: -5px;"></p>
             </button>
-            <ul v-if="dropdownVisible" class="dropdown-menu" style="display: block;  background: #e9e9e9;"
+            <ul v-if="dropdownVisible" class="fixed-dropdown dropdown-menu" style="display: block"
                 :style="{ top: dropdownPosition.top, left: dropdownPosition.left }">
                 <h5 class="ms-3 fs-16 fw-normal">Action</h5>
                 <li>
                     <a class="dropdown-item fw-normal fs-16" href="#">
                         <i class="bi bi-file-earmark-plus me-1 fs-16"></i>
-                        Add Content
+                        Edit
                     </a>
-                </li>   
+                </li>
                 <li>
                     <a class="dropdown-item fw-normal" href="#">
                         <i class="bi bi-trash me-1 fs-16"></i>
@@ -76,10 +76,10 @@ onUnmounted(() => {
         </div>
     </div>
 
-    <div v-if="showButtons" class="d-flex justify-content-center gap-2 h-40 mt-3">
+    <div v-if="showButtons" class="d-flex justify-content-center gap-2 h-43 mt-3">
         <ButtonBiru @click="showAddVideoPage">+ Tambah Video</ButtonBiru>
         <ButtonBiru @click="showAddEssayPage">+ Tambah Essay</ButtonBiru>
-        <ButtonBiru @click="showAddAssementPage">+ Tambah Assement</ButtonBiru>
+        <ButtonBiru @click="showAddAssessmentPage">+ Tambah Assessment</ButtonBiru>
     </div>
 
     <button class="bg-none rounded-3 w-100 h-43 d-flex align-items-center ps-2 fs-14 border-spasi mt-3 gap-2"

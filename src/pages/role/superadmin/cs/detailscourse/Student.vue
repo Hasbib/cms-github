@@ -127,15 +127,15 @@ const closeModal = () => {
 <template>
     <div class="d-flex justify-content-end studentsa">
         <div class="search-input w-25 me-md-1">
-            <input type="text" class="form-control rounded-3 h-40 c-border" v-model="searchQuery"
+            <input type="text" class="form-control rounded-3 h-45 c-border" v-model="searchQuery"
                 placeholder="Search" />
             <i class="bi bi-search mt--10"></i>
         </div>
-        <select class="form-select w-13 c-border ms-2 h-40 c-border rounded-3" v-model="selectedSort">
+        <select class="form-select w-13 c-border ms-2 h-45 c-border rounded-3" v-model="selectedSort">
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
         </select>
-        <ButtonBiru class="ms-3 mb-3 h-40 px-3 rounded-3 fs-16" @click="showAddStudentModal">
+        <ButtonBiru class="ms-3 mb-3 h-45 px-3 rounded-3 fs-16" @click="showAddStudentModal">
             Add Student
         </ButtonBiru>
     </div>
@@ -164,22 +164,21 @@ const closeModal = () => {
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="p-1">
+                        <td colspan="7" class="p-1">
                             <nav>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
                                         <label for="itemsPerPage" class="me-2">Items per page:</label>
-                                        <select id="itemsPerPage" class="form-select w-auto bg-none border-0"
-                                            v-model="itemsPerPage">
+                                        <select id="itemsPerPage" class="form-select w-auto" v-model="itemsPerPage">
                                             <option value="10">10</option>
                                             <option value="20">20</option>
                                             <option value="50">50</option>
                                         </select>
-                                        <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} -
-                                            {{ Math.min(currentPage * itemsPerPage, filteredData.length) }} of
-                                            {{ filteredData.length }} items</span>
                                     </div>
-                                    <ul class="pagination custom-pagination justify-content-end">
+                                    <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} - {{
+                                        Math.min(currentPage * itemsPerPage, filteredData.length) }} of
+                                        {{ filteredData.length }} items</span>
+                                    <ul class="pagination custom-pagination mb-0">
                                         <li class="page-item" :class="{ disabled: currentPage === 1 }">
                                             <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">
                                                 <i class="bi bi-chevron-left"></i>
@@ -188,7 +187,8 @@ const closeModal = () => {
                                         <li v-for="page in pageNumbers" :key="page" class="page-item"
                                             :class="{ active: page === currentPage }">
                                             <a class="page-link" href="#" @click.prevent="goToPage(page)"
-                                                v-if="page !== '...'">{{ page }}</a>
+                                                v-if="page !== '...'">{{
+                                                    page }}</a>
                                             <span class="page-link" v-else>...</span>
                                         </li>
                                         <li class="page-item" :class="{ disabled: currentPage === totalPages }">

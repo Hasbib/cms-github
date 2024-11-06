@@ -14,6 +14,10 @@ const store = useStore(); // Vuex store instance
 // Mengakses data user dari Vuex
 const user = computed(() => store.getters.getUser);
 
+const getFirstName = (fullName) => {
+    return fullName ? fullName.split(' ')[0] : '';
+};
+
 // Mengecek apakah path aktif
 const isActive = (path) => route.path === path;
 
@@ -72,7 +76,7 @@ onMounted(() => {
                     <div class="dropdown profile-section dropdown-toggle-custom rounded-25 p-2" type="button"
                         id="dropdownMenuButton" data-bs-toggle="dropdown">
                         <img :src="profileImage" alt="Profile Picture" class="rounded-circle ms-1" />
-                        <span class="profile-name fs-16">{{ user.name }} <br /> <small class="d-block mt--3 fs-12">{{
+                        <span class="profile-name fs-16">{{ getFirstName(user.name) }}<br /> <small class="d-block mt--3 fs-12">{{
                                 user.role }}</small></span>
                         <button class="btn border-0 dropdown-toggle" aria-expanded="false">
                             <i class="bi bi-chevron-down ms-0 me--8"></i>
@@ -102,7 +106,7 @@ onMounted(() => {
                     <div class="profile-section2 dropdown-toggle-custom rounded-5 p-2 ps-3 mb-3 ms--8">
                         <img :src="profileImage" alt="Profile Picture" class="rounded-circle profil-mobile" />
                         <div>
-                            <span class="profile-name fs-18">{{ user.name }}</span> <br>
+                            <span class="profile-name fs-18">{{ getFirstName(user.name) }}</span> <br>
                             <small class="profile-role fs-14">{{ user.role }}</small>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ import 'charts.css';
 import './assets/css/style.css';
 import './assets/css/responsive.css';
 import './assets/css/sa.css';
+import './assets/css/teacher.css';
 import './assets/js/main.js';
 
 const app = createApp(App);

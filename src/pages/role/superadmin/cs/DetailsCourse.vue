@@ -3,12 +3,12 @@ import NavbarSA from '@/layout/NavbarSA.vue';
 import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonBiru from '@/components/ButtonBiru.vue';
 import { ref, onUnmounted, onMounted } from 'vue';
-import Detail from './detailcourse/Detail.vue';
-import Modul from './detailcourse/Modul.vue';
-import Student from './detailcourse/Student.vue';
+import Details from './detailscourse/Details.vue';
+import Modul from './detailscourse/Modul.vue';
+import Student from './detailscourse/Student.vue';
 
 const isSidebarVisible = ref(true);
-const activeTab = ref('detail');
+const activeTab = ref('details');
 
 const checkWindowSize = () => {
     isSidebarVisible.value = window.innerWidth >= 770;
@@ -43,15 +43,15 @@ const setActiveTab = (tab) => {
             <div class="container mt-80">
                 <div class="row">
                     <div class="col-md-12 mt-4 mt-md-0">
-                        <div class="cbg-card rounded-2 p-4 border-0">
-                            <h5 class="fw-light fs-16">Digitefa/Course Manajemen</h5>
-                            <h4 class="fs-24">Course Manajemen</h4>
-                            <div class="cbg-card p-3 bordersa mt-2 min-height-68">
+                        <div class="card rounded-2 p-4 border-0">
+                            <h5 class="fw-light fs-16">Digitefa/Course Management</h5>
+                            <h4 class="fs-24">Course Management</h4>
+                            <div class="card p-3 bordersa mt-2 min-height-68">
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex justify-content-start mt-11 gap-4">
-                                        <label class="fs-16 pointer" :class="{ 'active-tab': activeTab === 'detail' }"
-                                            @click="setActiveTab('detail')">
-                                            Detail
+                                        <label class="fs-16 pointer" :class="{ 'active-tab': activeTab === 'details' }"
+                                            @click="setActiveTab('details')">
+                                            Details
                                         </label>
                                         <label class="fs-16 pointer" :class="{ 'active-tab': activeTab === 'modul' }"
                                             @click="setActiveTab('modul')">
@@ -62,12 +62,13 @@ const setActiveTab = (tab) => {
                                             Student
                                         </label>
                                     </div>
-                                    <ButtonBiru class="h-40 px-3" v-if="activeTab === 'detail'">Edit</ButtonBiru>
+                                    <ButtonBiru class="h-40 px-5" v-if="activeTab === 'details'">Edit</ButtonBiru>
+                                    
                                 </div>
                                 <hr />
 
-                                <div v-show="activeTab === 'detail'">
-                                    <Detail />
+                                <div v-show="activeTab === 'details'">
+                                    <Details />
                                 </div>
                                 <div v-show="activeTab === 'modul'">
                                     <Modul />

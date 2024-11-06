@@ -116,20 +116,20 @@ onUnmounted(() => {
             <div class="container mt-80">
                 <div class="row">
                     <div class="col-md-12 mt-4 mt-md-0">
-                        <div class="card rounded-2 p-4 border-0">
+                        <div class="cbg-card rounded-2 p-4 border-0">
                             <h5 class="fw-light fs-16">Digitefa/Course Manajemen</h5>
                             <h4 class="fs-24">Course Manajemen</h4>
                             <div class="d-flex justify-content-end">
                                 <div class="search-input w-25 me-md-1">
-                                    <input type="text" class="form-control rounded-3 h-45 c-border"
+                                    <input type="text" class="form-control rounded-3 h-40 c-border"
                                         v-model="searchQuery" placeholder="Search" />
                                     <i class="bi bi-search mt--10"></i>
                                 </div>
-                                <select class="form-select w-13 c-border ms-2 h-45 c-border rounded-3">
+                                <select class="form-select w-13 c-border ms-2 h-40 c-border rounded-3">
                                     <option selected>Newest</option>
                                     <option value="oldest">Oldest</option>
                                 </select>
-                                <ButtonBiru class="ms-3 mb-4 h-45 px-3 rounded-3 fs-16" @click="showAddPage">
+                                <ButtonBiru class="ms-3 mb-4 h-40 px-3 rounded-3 fs-16" @click="showAddPage">
                                     Add Course
                                 </ButtonBiru>
                             </div>
@@ -257,16 +257,16 @@ onUnmounted(() => {
             </div>
         </div>
         <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
-        <div v-if="isToastVisible" class="toast align-items-center text-white bg-light-success border-0 show"
-            role="alert">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ toastMessage }}
+            <div v-if="isToastVisible" class="toast align-items-center text-white bg-light-success border-0 show"
+                role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ toastMessage }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" @click="closeToast"
+                        aria-label="Close"></button>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" @click="closeToast"
-                    aria-label="Close"></button>
             </div>
         </div>
-    </div>
     </div>
 </template>
